@@ -55,8 +55,6 @@ public class Usuario implements Serializable {
 		estaActivo = true;
 	}
 	
-	
-
 	public Long getId() {
 		return id;
 	}
