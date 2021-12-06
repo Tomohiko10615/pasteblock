@@ -117,7 +117,7 @@ public class Usuario implements Serializable {
 	public Integer getMesesRegistrado() {
 		LocalDate now = LocalDate.now();
 		Period period = Period.between(
-			     this.fechaRegistro.toInstant()
+			     fechaRegistro.toInstant()
 			      .atZone(ZoneId.of("UTC"))
 			      .toLocalDate(),
 			     now);
