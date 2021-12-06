@@ -1,6 +1,9 @@
 package com.pasteblock.pasteblock.app.models.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -112,6 +115,13 @@ public class Usuario implements Serializable {
 	}
 
 	public Integer getMesesRegistrado() {
+		LocalDate now = LocalDate.now();
+		Period period = Period.between(
+			     this.fechaRegistro.toInstant()
+			      .atZone(ZoneId.of("UTC"))
+			      .toLocalDate(),
+			     now);
+		mesesRegistrado = period.getMonths();
 		return mesesRegistrado;
 	}
 
