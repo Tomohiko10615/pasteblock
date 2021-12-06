@@ -28,7 +28,7 @@ public class ClienteController {
 	
 	@GetMapping("/form")
 	public String crear(Map<String, Object> model) {
-		Cliente cliente = new Cliente();;
+		Cliente cliente = new Cliente();
 		model.put("cliente", cliente);
 		model.put("titulo", "Crear cliente");
 		return "crear";
