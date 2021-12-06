@@ -31,13 +31,11 @@ public class ClienteController {
 		Cliente cliente = new Cliente();;
 		model.put("cliente", cliente);
 		model.put("titulo", "Crear cliente");
-		System.out.println(cliente);
 		return "crear";
 	}
 	
 	@PostMapping("/form")
 	public String guardar(Cliente cliente) {
-		System.out.println(cliente);
 		clienteDao.save(cliente);
 		return "redirect:listar";
 	}
