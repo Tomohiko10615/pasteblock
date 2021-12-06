@@ -115,6 +115,10 @@ public class Usuario implements Serializable {
 	}
 
 	public Integer getMesesRegistrado() {
+		return mesesRegistrado;
+	}
+
+	public void setMesesRegistrado(Integer mesesRegistrado) {
 		LocalDate now = LocalDate.now();
 		Period period = Period.between(
 			     fechaRegistro.toInstant()
@@ -122,10 +126,6 @@ public class Usuario implements Serializable {
 			      .toLocalDate(),
 			     now);
 		mesesRegistrado = period.getMonths();
-		return mesesRegistrado;
-	}
-
-	public void setMesesRegistrado(Integer mesesRegistrado) {
 		this.mesesRegistrado = mesesRegistrado;
 	}
 
