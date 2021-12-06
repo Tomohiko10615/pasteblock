@@ -1,0 +1,167 @@
+package com.pasteblock.pasteblock.app.models.entity;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "blockers")
+public class Blocker implements Serializable {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Usuario usuario;
+
+	private Float reputacion;
+	private String foto;
+	private Boolean disponible;
+	
+	@OneToMany(mappedBy="blocker", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Mensaje> mensajes;
+	
+	@OneToMany(mappedBy="blocker", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Contrato> contratos;
+
+	@OneToMany(mappedBy="blocker", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<ServicioPorBlocker> servicios;
+
+	@OneToMany(mappedBy="blocker", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<DistritoPorBlocker> distritos;
+
+	public Blocker() {
+		mensajes = new ArrayList<Mensaje>();
+		contratos = new ArrayList<Contrato>();
+		servicios = new ArrayList<ServicioPorBlocker>();
+		distritos = new ArrayList<DistritoPorBlocker>();
+	}
+
+	@Column(name = "es_nuevo")
+	private Boolean esNuevo;
+
+	@Column(name = "trabajos_en_proceso")
+	private Integer trabajosEnProceso;
+
+	@Column(name = "numero_trabajos_culminados")
+	private Integer numeroTrabajosCulminados;
+
+	private static final long serialVersionUID = 1L;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuarioId(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Float getReputacion() {
+		return reputacion;
+	}
+
+	public void setReputacion(Float reputacion) {
+		this.reputacion = reputacion;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	public Boolean getDisponible() {
+		return disponible;
+	}
+
+	public void setDisponible(Boolean disponible) {
+		this.disponible = disponible;
+	}
+
+	public List<ServicioPorBlocker> getServicios() {
+		return servicios;
+	}
+
+	public void setServicios(List<ServicioPorBlocker> servicios) {
+		this.servicios = servicios;
+	}
+
+	public List<DistritoPorBlocker> getDistritos() {
+		return distritos;
+	}
+
+	public void setDistritos(List<DistritoPorBlocker> distritos) {
+		this.distritos = distritos;
+	}
+	
+	public List<Mensaje> getMensajes() {
+		return mensajes;
+	}
+
+	public void setMensajes(List<Mensaje> mensajes) {
+		this.mensajes = mensajes;
+	}
+
+	public Boolean getEsNuevo() {
+		return esNuevo;
+	}
+
+	public void setEsNuevo(Boolean esNuevo) {
+		this.esNuevo = esNuevo;
+	}
+
+	public Integer getTrabajosEnProceso() {
+		return trabajosEnProceso;
+	}
+
+	public void setTrabajosEnProceso(Integer trabajosEnProceso) {
+		this.trabajosEnProceso = trabajosEnProceso;
+	}
+
+	public Integer getNumeroTrabajosCulminados() {
+		return numeroTrabajosCulminados;
+	}
+
+	public void setNumeroTrabajosCulminados(Integer numeroTrabajosCulminados) {
+		this.numeroTrabajosCulminados = numeroTrabajosCulminados;
+	}
+
+	public List<Contrato> getContratos() {
+		return contratos;
+	}
+
+	public void setContratos(List<Contrato> contratos) {
+		this.contratos = contratos;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+}
