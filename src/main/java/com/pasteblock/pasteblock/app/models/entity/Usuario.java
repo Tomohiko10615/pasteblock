@@ -31,7 +31,7 @@ public class Usuario implements Serializable {
 	private String email;
 	private String password;
 	private String rol;
-	private Integer celular;
+	private String celular;
 	
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.ALL)
 	private Cliente cliente;
@@ -105,11 +105,11 @@ public class Usuario implements Serializable {
 		this.rol = rol;
 	}
 
-	public Integer getCelular() {
+	public String getCelular() {
 		return celular;
 	}
 
-	public void setCelular(Integer celular) {
+	public void setCelular(String celular) {
 		this.celular = celular;
 	}
 
