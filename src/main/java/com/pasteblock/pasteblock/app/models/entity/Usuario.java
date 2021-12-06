@@ -3,7 +3,6 @@ package com.pasteblock.pasteblock.app.models.entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.ZoneId;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -40,8 +39,8 @@ public class Usuario implements Serializable {
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.ALL)
 	private Blocker blocker;
 
-	@Column(name = "meses_registrado")
-	private Integer mesesRegistrado;
+	@Column(name = "tiempo_registrado")
+	private String tiempoRegistrado;
 
 	@Column(name = "fecha_de_registro")
 	@Temporal(TemporalType.DATE)
@@ -114,19 +113,20 @@ public class Usuario implements Serializable {
 		this.celular = celular;
 	}
 
-	public Integer getMesesRegistrado() {
-		return mesesRegistrado;
+	public String getTiempoRegistrado() {
+		LocalDate now = LocalDate.now();
+		LocalDate startDate = ((java.sql.Date) this.getFechaRegistro()).toLocalDate();
+		Period period = Period.between(
+			     startDate,
+			     now);
+		Integer mesesRegistrado = (Integer) period.getMonths();
+		Integer anosRegistrado = (Integer) period.getYears();
+		tiempoRegistrado = anosRegistrado + " año(s)" + " y " + mesesRegistrado + " meses(s)";
+		return tiempoRegistrado;
 	}
 
-	public void setMesesRegistrado(Integer mesesRegistrado) {
-		LocalDate now = LocalDate.now();
-		Period period = Period.between(
-			     fechaRegistro.toInstant()
-			      .atZone(ZoneId.of("UTC"))
-			      .toLocalDate(),
-			     now);
-		mesesRegistrado = period.getMonths();
-		this.mesesRegistrado = mesesRegistrado;
+	public void setTiempoRegistrado(String tiempoRegistrado) {
+		this.tiempoRegistrado = tiempoRegistrado;
 	}
 
 	public Date getFechaRegistro() {
