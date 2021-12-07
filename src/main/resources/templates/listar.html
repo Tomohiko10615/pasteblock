@@ -23,8 +23,8 @@
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="#">Home</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/clientes/listar}">Clientes</a>
-					</li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/clientes/listar}">Clientes</a></li>
 				</ul>
 			</div>
 		</div>
@@ -33,7 +33,8 @@
 		<h1
 			class="text-secondary border border-primary border-top-0 border-start-0 border-end-0"
 			th:text="${titulo}"></h1>
-		<a class="btn btn-dark btn-sm" th:href="@{/clientes/form}">Crear cliente</a>
+		<a class="btn btn-dark btn-sm" th:href="@{/clientes/form}">Crear
+			cliente</a>
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -41,12 +42,12 @@
 					<th>Nombre</th>
 					<th>Apellido</th>
 					<th>Email</th>
-					<th>Fecha de registro</th>
+					<th>Registro</th>
 					<th>Antiguedad</th>
 					<th>Activo</th>
 					<th>Celular</th>
 					<th>Stars</th>
-					<th>N° Servs.</th>
+					<th>Servs</th>
 					<th>Distrito</th>
 					<th>Editar</th>
 					<th>Eliminar</th>
@@ -65,8 +66,10 @@
 					<td th:text="${cliente.reputacion}"></td>
 					<td th:text="${cliente.numeroServiciosContratados}"></td>
 					<td th:text="${cliente.distrito}"></td>
-					<td><a class="btn btn-primary btn-sm" th:href="@{/form/} + ${cliente.id}">Editar</a></td>
-					<td><a class="btn btn-danger btn-sm" th:href="@{/eliminar/} + ${cliente.id}">Eliminar</a></td>
+					<td><a class="btn btn-primary btn-sm"
+						th:href="@{/clientes/form/} + ${cliente.id}">Editar</a></td>
+					<td><button class="btn btn-danger btn-sm"
+						th:id="${cliente.id}" onclick="confirm(id)">Eliminar</button></td>
 				</tr>
 			</tbody>
 		</table>
@@ -83,5 +86,32 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script th:inline="javascript">
+	
+	function confirm(id) {
+		Swal.fire({
+			  title: '¿Estás seguro?',
+			  text: "¡No serás capaz de revertirlo!",
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '¡Sí, eliminarlo!'
+			}).then((result) => {
+			  if (result.isConfirmed) {
+				  Swal.fire(
+			      '¡Eliminado!',
+			      'El usuario ha sido eliminado.',
+			      'success'
+			    )
+			    var url = /*[[@{/clientes/eliminar/}]]*/
+
+			    window.location.href = url + id;
+			    
+			  }
+			})
+	}
+</script>
 </body>
 </html>

@@ -17,20 +17,34 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "usuarios")
 public class Usuario implements Serializable {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	
+	@NotBlank
 	private String nombre;
+	@NotBlank
 	private String apellido;
+	
+	@Email
 	private String email;
+	
+	@NotEmpty
 	private String password;
+	
 	private String rol;
+	
+	@NotBlank
 	private String celular;
 	
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.ALL)
@@ -44,6 +58,7 @@ public class Usuario implements Serializable {
 
 	@Column(name = "fecha_de_registro")
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fechaRegistro;
 	
 	@Column(name = "esta_activo")
@@ -51,8 +66,8 @@ public class Usuario implements Serializable {
 	
 	@PrePersist
 	public void prePersist() {
-		fechaRegistro = new Date();
 		estaActivo = true;
+		fechaRegistro = new Date();
 	}
 	
 	public Long getId() {
@@ -112,19 +127,25 @@ public class Usuario implements Serializable {
 	}
 
 	public String getTiempoRegistrado() {
+		setTiempoRegistrado();
+		return tiempoRegistrado;
+	}
+
+	public void setTiempoRegistrado() {
+		LocalDate startDate = null;
+		try {
+			startDate = ((java.sql.Date) this.getFechaRegistro()).toLocalDate();
+		} catch (Exception e) {
+			startDate = LocalDate.now();
+		}
 		LocalDate now = LocalDate.now();
-		LocalDate startDate = ((java.sql.Date) this.getFechaRegistro()).toLocalDate();
+		
 		Period period = Period.between(
 			     startDate,
 			     now);
 		Integer mesesRegistrado = (Integer) period.getMonths();
 		Integer anosRegistrado = (Integer) period.getYears();
-		tiempoRegistrado = anosRegistrado + " año(s)" + " y " + mesesRegistrado + " meses(s)";
-		return tiempoRegistrado;
-	}
-
-	public void setTiempoRegistrado(String tiempoRegistrado) {
-		this.tiempoRegistrado = tiempoRegistrado;
+		this.tiempoRegistrado = anosRegistrado + " año(s)" + " y " + mesesRegistrado + " meses(s)";
 	}
 
 	public Date getFechaRegistro() {

@@ -1,13 +1,9 @@
 package com.pasteblock.pasteblock.app.models.dao;
 
-import java.util.List;
+import org.springframework.data.repository.CrudRepository;
 
 import com.pasteblock.pasteblock.app.models.entity.Cliente;
 
-public interface IClienteDao {
-	
-	public List<Cliente> findAll();
+public interface IClienteDao extends CrudRepository<Cliente, Long> {
 
-	void save(Cliente cliente);
-	
 }
