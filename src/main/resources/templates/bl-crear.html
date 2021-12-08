@@ -11,7 +11,7 @@
 		<div class="card bg-light">
 			<div class="card-header fw-bold" th:text="${accion}"></div>
 			<div class="card-body">
-				<img class="img-thumbnail rounded float-start me-3"
+				<img th:if="${blocker.foto != null}" class="img-thumbnail rounded float-start me-3"
 					style="max-width: 25%;" th:src="@{'/uploads/' + ${blocker.foto}}" />
 					<div class="card bg-light">
 					<div class="card-body">
