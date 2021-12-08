@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pasteblock.pasteblock.app.models.entity.Cliente;
 import com.pasteblock.pasteblock.app.models.services.IClienteService;
@@ -43,10 +44,11 @@ public class ClienteController {
 	}
 	
 	@PostMapping("/form")
-	public String guardar(Cliente cliente) {
+	public String guardar(Cliente cliente, RedirectAttributes flash) {
 		if (cliente.getId() == null) {
 			cliente.getUsuario().setTiempoRegistrado();
 			clienteService.save(cliente);
+			flash.addFlashAttribute("success", "Cliente creado con éxito");
 		}
 		else {
 			Cliente clienteActualizado = clienteService.findOne(cliente.getId());
@@ -59,6 +61,7 @@ public class ClienteController {
 			clienteActualizado.getUsuario().setFechaRegistro(cliente.getUsuario().getFechaRegistro());
 			clienteActualizado.getUsuario().setEstaActivo(cliente.getUsuario().getEstaActivo());
 			clienteService.save(clienteActualizado);
+			flash.addFlashAttribute("success", "Cliente actualizado con éxito");
 		}
 		
 		return "redirect:listar";
@@ -81,10 +84,11 @@ public class ClienteController {
 	}
 	
 	@GetMapping(value="/eliminar/{id}")
-	public String eliminar(@PathVariable(value="id") Long id) {
+	public String eliminar(@PathVariable(value="id") Long id, RedirectAttributes flash) {
 		
 		if(id > 0) {
 			clienteService.delete(id);
+			flash.addFlashAttribute("success", "Cliente eliminado con éxito");
 		}
 		
 		return "redirect:/clientes/listar";

@@ -7,68 +7,71 @@
 
 	<header th:replace="layout/base :: header"></header>
 
-	<div class="container">
-		<h1
-			class="text-secondary border border-primary border-top-0 border-start-0 border-end-0"
-			th:text="${accion}"></h1>
-		<a class="btn btn-dark btn-sm" th:href="@{/clientes/form}">Crear
-			cliente</a>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>Id</th>
-					<th>Nombre</th>
-					<th>Apellido</th>
-					<th>Email</th>
-					<th>Registro</th>
-					<th>Antiguedad</th>
-					<th>Activo</th>
-					<th>Celular</th>
-					<th>Stars</th>
-					<th>Servs</th>
-					<th>Distrito</th>
-					<th>Editar</th>
-					<th>Eliminar</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="cliente: ${clientes}">
-					<td th:text="${cliente.id}"></td>
-					<td th:text="${cliente.usuario.nombre}"></td>
-					<td th:text="${cliente.usuario.apellido}"></td>
-					<td th:text="${cliente.usuario.email}"></td>
-					<td th:text="${cliente.usuario.fechaRegistro}"></td>
-					<td th:text="${cliente.usuario.tiempoRegistrado}"></td>
-					<td th:text="${cliente.usuario.estaActivo}"></td>
-					<td th:text="${cliente.usuario.celular}"></td>
-					<td th:text="${cliente.reputacion}"></td>
-					<td th:text="${cliente.numeroServiciosContratados}"></td>
-					<td th:text="${cliente.distrito}"></td>
-					<td><a class="btn btn-primary btn-sm"
-						th:href="@{/clientes/form/} + ${cliente.id}">Editar</a></td>
-					<td><button class="btn btn-danger btn-sm"
-							th:id="${cliente.id}" onclick="confirm(id)">Eliminar</button></td>
-				</tr>
-			</tbody>
-		</table>
+	<div class="container py-4">
+
+		<div class="card bg-light">
+			<div class="card-header fw-bold" th:text="${accion}"></div>
+			<div class="card-body">
+				<h4 class="card-title">
+					<a class="btn btn-outline-success btn-sm"
+						th:href="@{/clientes/form}">Crear cliente</a>
+				</h4>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Nombre</th>
+							<th>Apellido</th>
+							<th>Email</th>
+							<th>Registro</th>
+							<th>Antiguedad</th>
+							<th>Activo</th>
+							<th>Celular</th>
+							<th>Stars</th>
+							<th>Servs</th>
+							<th>Editar</th>
+							<th>Eliminar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="cliente: ${clientes}">
+							<td th:text="${cliente.id}"></td>
+							<td th:text="${cliente.usuario.nombre}"></td>
+							<td th:text="${cliente.usuario.apellido}"></td>
+							<td th:text="${cliente.usuario.email}"></td>
+							<td th:text="${cliente.usuario.fechaRegistro}"></td>
+							<td th:text="${cliente.usuario.tiempoRegistrado}"></td>
+							<td th:text="${cliente.usuario.estaActivo}"></td>
+							<td th:text="${cliente.usuario.celular}"></td>
+							<td th:text="${cliente.reputacion}"></td>
+							<td th:text="${cliente.numeroServiciosContratados}"></td>
+							<td><a class="btn btn-outline-info btn-sm"
+								th:href="@{/clientes/form/} + ${cliente.id}">Editar</a></td>
+							<td><button class="btn btn-outline-danger btn-sm"
+									th:id="${cliente.id}" onclick="confirm(id)">Eliminar</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
 
 	<footer th:replace="layout/base :: footer"></footer>
 
-	<script>
+	<script th:inline="javascript">
 	function confirm(id) {
 		Swal.fire({
-			  title: '¿Estás seguro?',
-			  text: "¡No serás capaz de revertirlo!",
+			  title: 'Â¿EstÃ¡s seguro?',
+			  text: 'Â¡No serÃ¡s capaz de revertirlo!',
 			  icon: 'warning',
 			  showCancelButton: true,
 			  confirmButtonColor: '#3085d6',
 			  cancelButtonColor: '#d33',
-			  confirmButtonText: '¡Sí, eliminarlo!'
+			  confirmButtonText: 'Â¡SÃ­, eliminarlo!'
 			}).then((result) => {
 			  if (result.isConfirmed) {
 				  Swal.fire(
-			      '¡Eliminado!',
+			      'Â¡Eliminado!',
 			      'El usuario ha sido eliminado.',
 			      'success'
 			    ).then((result) => {
