@@ -39,7 +39,7 @@ INSERT INTO usuarios (id, nombre, apellido, email, password, rol, celular, esta_
 INSERT INTO clientes (id, usuario_id, reputacion, direccion, distrito, numero_servicios_contratados) VALUES(13, 13, 3.7, 'Asentamientos Humanos Unión y Paz s/n', 'Villa María del Triunfo', 13);
 
 INSERT INTO usuarios (id, nombre, apellido, email, password, rol, celular, esta_activo, fecha_de_registro) VALUES(14, 'Iciar', 'Ariza', 'iariza@bolsadeideas.com', 'pass', 'Blocker', 911012233, TRUE, '2010-12-07');
-INSERT INTO blockers (id, usuario_id, reputacion, presentacion, disponible, trabajos_en_proceso, numero_trabajos_culminados) VALUES(1, 14, 2.4, 'Hola, soy Iciar.', TRUE, 1, 35);
+INSERT INTO blockers (id, usuario_id, reputacion, presentacion, disponible, trabajos_en_proceso, numero_trabajos_culminados, foto) VALUES(1, 14, 2.4, 'Hola, soy Iciar.', TRUE, 1, 35, 'iariza.jpg');
 
 INSERT INTO usuarios (id, nombre, apellido, email, password, rol, celular, esta_activo, fecha_de_registro) VALUES(15, 'Oliva', 'Navarro', 'onavarro@bolsadeideas.com', 'pass', 'Blocker', 913011276, TRUE, '2017-11-28');
 INSERT INTO blockers (id, usuario_id, reputacion, presentacion, disponible, trabajos_en_proceso, numero_trabajos_culminados) VALUES(2, 15, 4.4, 'Hola, soy Oliva.', TRUE, 0, 29);
@@ -48,4 +48,4 @@ INSERT INTO usuarios (id, nombre, apellido, email, password, rol, celular, esta_
 INSERT INTO blockers (id, usuario_id, reputacion, presentacion, disponible, trabajos_en_proceso, numero_trabajos_culminados) VALUES(3, 16, 2.1, 'Hola, soy Brahim.', TRUE, 2, 51);
 
 INSERT INTO usuarios (id, nombre, apellido, email, password, rol, celular, esta_activo, fecha_de_registro) VALUES(17, 'Gabriela', 'Castello', 'gcastello@bolsadeideas.com', 'pass', 'Blocker', 990434284, TRUE, '2018-08-08');
-INSERT INTO blockers (id, usuario_id, reputacion, presentacion, disponible, trabajos_en_proceso, numero_trabajos_culminados) VALUES(4, 17, 5.0, 'Hola, soy Gabriela.', TRUE, 1, 1);
+INSERT INTO blockers (id, usuario_id, reputacion, presentacion, disponible, trabajos_en_proceso, numero_trabajos_culminados, foto) VALUES(4, 17, 5.0, 'Hola, soy Gabriela.', TRUE, 1, 1, 'gcastello.jpg');

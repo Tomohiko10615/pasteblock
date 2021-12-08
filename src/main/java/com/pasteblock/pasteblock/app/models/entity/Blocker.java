@@ -26,7 +26,9 @@ public class Blocker implements Serializable {
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Usuario usuario;
 
+	@Column(columnDefinition="TEXT")
 	private String presentacion;
+	
 	private Float reputacion;
 	private String foto;
 	private Boolean disponible;
