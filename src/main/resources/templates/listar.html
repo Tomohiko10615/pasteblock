@@ -104,12 +104,13 @@
 			      '¡Eliminado!',
 			      'El usuario ha sido eliminado.',
 			      'success'
-			    )
+			    ).then((result) => {
+			    	var url = /*[[@{/clientes/eliminar/}]]*/ 
+					window.location.href = url + id;
 			    
 			  }
-			  var url = /*[[@{/clientes/eliminar/}]]*/ 
-			  window.location.href = url + id;
-			})
+			  
+			)}
 	}
 </script>
 </body>
