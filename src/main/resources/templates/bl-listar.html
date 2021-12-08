@@ -27,6 +27,7 @@
 							<th>Antiguedad</th>
 							<th>Activo</th>
 							<th>Celular</th>
+							<th>Ver perfil</th>
 							<th>Editar</th>
 							<th>Eliminar</th>
 						</tr>
@@ -41,6 +42,8 @@
 							<td th:text="${blocker.usuario.tiempoRegistrado}"></td>
 							<td th:text="${blocker.usuario.estaActivo}"></td>
 							<td th:text="${blocker.usuario.celular}"></td>
+							<td><a class="btn btn-outline-primary btn-sm"
+									th:href="@{/blockers/ver/} + ${blocker.id}">Ver perfil</a></td>
 							<td><a class="btn btn-outline-info btn-sm"
 								th:href="@{/blockers/form/} + ${blocker.id}">Editar</a></td>
 							<td><button class="btn btn-outline-danger btn-sm"

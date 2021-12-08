@@ -1,5 +1,9 @@
 package com.pasteblock.pasteblock.app.controllers;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pasteblock.pasteblock.app.models.entity.Blocker;
@@ -58,7 +63,21 @@ public class BlockerController {
 	}
 	
 	@PostMapping("/form")
-	public String guardar(Blocker blocker, RedirectAttributes flash) {
+	public String guardar(Blocker blocker, @RequestParam("file") MultipartFile foto, RedirectAttributes flash) {
+		
+		if (!foto.isEmpty()) {
+			Path directorioRecursos = Paths.get("src//main//resources//static/uploads");
+			String rootPath = directorioRecursos.toFile().getAbsolutePath();
+			try {
+				byte[] bytes = foto.getBytes();
+				Path rutaCompleta = Paths.get(rootPath + "//" + foto.getOriginalFilename());
+				Files.write(rutaCompleta, bytes);
+				blocker.setFoto(foto.getOriginalFilename());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		if (blocker.getId() == null) {
 			blocker.getUsuario().setTiempoRegistrado();
 			blockerService.save(blocker);
@@ -98,6 +117,14 @@ public class BlockerController {
 		model.put("blocker", blocker);
 		model.put("accion", "Editar blocker");
 		return "bl-crear";
+	}
+	
+	@GetMapping(value="/ver/{id}")
+	public String ver(@PathVariable(value="id") Long id, Model model) {
+		Blocker blocker = blockerService.findOne(id);
+		model.addAttribute("blocker", blocker);
+		model.addAttribute("accion", "Perfil del blocker");
+		return "bl-ver";
 	}
 	
 	@GetMapping(value="/eliminar/{id}")

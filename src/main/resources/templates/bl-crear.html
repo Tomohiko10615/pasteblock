@@ -13,7 +13,7 @@
 			<div class="card-body">
 
 				<form th:action="@{/blockers/form}" method="post"
-					th:object="${blocker}">
+					th:object="${blocker}" enctype="multipart/form-data">
 
 					<div class="mb-3 row">
 						<label class="col-sm-2 col-form-label" for="nombre">Nombre</label>
@@ -63,6 +63,13 @@
 						<div class="col-sm-6">
 							<input type="text" th:field="*{usuario.fechaRegistro}"
 								id="fechaRegistro" class="form-control">
+						</div>
+					</div>
+					<div class="mb-3 row">
+						<label class="col-sm-2 col-form-label" for="foto">Foto</label>
+						<div class="col-sm-6">
+							<input type="file" name="file"
+								id="foto" class="form-control">
 						</div>
 					</div>
 					<div class="mb-3 row" th:if="*{usuario.estaActivo != null}">

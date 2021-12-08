@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/base :: head"></head>
+
+<body>
+
+	<header th:replace="layout/base :: header"></header>
+
+	<div class="container py-4">
+
+		<div class="card bg-light">
+			<div class="card-header fw-bold" th:text="${accion}"></div>
+			<div class="card-body">
+				<img class="img-thumbnail rounded float-left" style="max-width: 25%;" th:src="@{'/uploads/' + ${blocker.foto}}" />
+				<ul class="list-group">
+				<li class="list-group-item" th:text="${blocker.usuario.nombre}"></li>
+				<li class="list-group-item" th:text="${blocker.usuario.apellido}"></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/base :: footer"></footer>
+
+	<script th:inline="javascript">
+	function confirm(id) {
+		Swal.fire({
+			  title: '¿Estás seguro?',
+			  text: '¡No serás capaz de revertirlo!',
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '¡Sí, eliminarlo!'
+			}).then((result) => {
+			  if (result.isConfirmed) {
+				  Swal.fire(
+			      '¡Eliminado!',
+			      'El usuario ha sido eliminado.',
+			      'success'
+			    ).then((result) => {
+			    	var url = /*[[@{/blockers/eliminar/}]]*/ 
+					window.location.href = url + id;
+			    })
+			  }
+			})
+	}
+			
+			    
+</script>
+</body>
+</html>

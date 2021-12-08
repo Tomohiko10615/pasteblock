@@ -145,7 +145,7 @@ public class Usuario implements Serializable {
 			     now);
 		Integer mesesRegistrado = (Integer) period.getMonths();
 		Integer anosRegistrado = (Integer) period.getYears();
-		this.tiempoRegistrado = anosRegistrado + " año(s)" + " y " + mesesRegistrado + " meses(s)";
+		this.tiempoRegistrado = anosRegistrado + " año(s)" + " y " + mesesRegistrado + " mes(es)";
 	}
 
 	public Date getFechaRegistro() {
