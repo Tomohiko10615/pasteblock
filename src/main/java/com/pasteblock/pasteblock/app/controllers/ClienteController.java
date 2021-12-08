@@ -28,7 +28,7 @@ public class ClienteController {
             clienteService.save(clienteService.findAll().get(i));
         }
 		
-		model.addAttribute("titulo", "Listado de clientes");
+		model.addAttribute("accion", "Listado de clientes");
 		model.addAttribute("clientes", clienteService.findAll());
 		return "listar";
 		
