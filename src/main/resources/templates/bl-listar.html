@@ -13,7 +13,7 @@
 			<div class="card-header fw-bold" th:text="${accion}"></div>
 			<div class="card-body">
 				<h4 class="card-title">
-					<a class="btn btn-outline-success btn-sm"
+					<a class="btn btn-outline-primary btn-sm"
 						th:href="@{/blockers/form}">Crear blocker</a>
 				</h4>
 				<table class="table table-striped">
@@ -42,7 +42,7 @@
 							<td th:text="${blocker.usuario.tiempoRegistrado}"></td>
 							<td th:text="${blocker.usuario.estaActivo}"></td>
 							<td th:text="${blocker.usuario.celular}"></td>
-							<td><a class="btn btn-outline-primary btn-sm"
+							<td><a class="btn btn-outline-success btn-sm"
 									th:href="@{/blockers/ver/} + ${blocker.id}">Ver perfil</a></td>
 							<td><a class="btn btn-outline-info btn-sm"
 								th:href="@{/blockers/form/} + ${blocker.id}">Editar</a></td>

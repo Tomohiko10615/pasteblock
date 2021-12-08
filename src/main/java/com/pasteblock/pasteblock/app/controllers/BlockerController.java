@@ -89,7 +89,9 @@ public class BlockerController {
 			blockerActualizado.getUsuario().setApellido(blocker.getUsuario().getApellido());
 			blockerActualizado.getUsuario().setEmail(blocker.getUsuario().getEmail());
 			blockerActualizado.getUsuario().setCelular(blocker.getUsuario().getCelular());
-			blockerActualizado.setFoto(blocker.getFoto());
+			if (blocker.getFoto() != null) {
+				blockerActualizado.setFoto(blocker.getFoto());
+			}
 			blockerActualizado.setPresentacion(blocker.getPresentacion());
 			blockerActualizado.setDisponible(blocker.getDisponible());
 			blockerActualizado.setDisponible(blocker.getDisponible());

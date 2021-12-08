@@ -49,3 +49,6 @@ INSERT INTO blockers (id, usuario_id, reputacion, presentacion, disponible, trab
 
 INSERT INTO usuarios (id, nombre, apellido, email, password, rol, celular, esta_activo, fecha_de_registro) VALUES(17, 'Gabriela', 'Castello', 'gcastello@bolsadeideas.com', 'pass', 'Blocker', 990434284, TRUE, '2018-08-08');
 INSERT INTO blockers (id, usuario_id, reputacion, presentacion, disponible, trabajos_en_proceso, numero_trabajos_culminados, foto) VALUES(4, 17, 5.0, 'Hola, soy Gabriela.', TRUE, 1, 1, 'gcastello.jpg');
+
+INSERT INTO usuarios (id, nombre, apellido, email, password, rol, celular, esta_activo, fecha_de_registro) VALUES(18, 'Marcial', 'Feijoo', 'feijoo@bolsadeideas.com', 'pass', 'Cliente', 91577235, TRUE, '2020-05-05');
+INSERT INTO clientes (id, usuario_id, reputacion, direccion, distrito, numero_servicios_contratados) VALUES(14, 18, 2.9, 'Prolongacion Los Fresnos', 'La Molina', 22);
