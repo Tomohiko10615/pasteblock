@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/base :: head"></head>
+
+<body>
+
+	<header th:replace="layout/base :: header"></header>
+
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header fw-bold">Bievenido al Panel de
+				Administración de Pasteblock</div>
+			<div class="card-body">
+				<div class="d-grid gap-2">
+					<a th:href="@{/clientes/listar}"
+						class="btn btn-outline-success" type="button">Ver
+						Clientes</a>
+					<a th:href="@{/blockers/listar}" class="btn btn-outline-info"
+						type="button">Ver Blockers</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/base :: footer"></footer>
+
+</body>
+</html>

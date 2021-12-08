@@ -26,6 +26,7 @@ public class Blocker implements Serializable {
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Usuario usuario;
 
+	private String presentacion;
 	private Float reputacion;
 	private String foto;
 	private Boolean disponible;
@@ -158,6 +159,14 @@ public class Blocker implements Serializable {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public String getPresentacion() {
+		return presentacion;
+	}
+
+	public void setPresentacion(String presentacion) {
+		this.presentacion = presentacion;
 	}
 
 	public static long getSerialversionuid() {

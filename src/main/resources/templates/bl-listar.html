@@ -14,7 +14,7 @@
 			<div class="card-body">
 				<h4 class="card-title">
 					<a class="btn btn-outline-success btn-sm"
-						th:href="@{/clientes/form}">Crear cliente</a>
+						th:href="@{/blockers/form}">Crear blocker</a>
 				</h4>
 				<table class="table table-striped">
 					<thead>
@@ -27,28 +27,24 @@
 							<th>Antiguedad</th>
 							<th>Activo</th>
 							<th>Celular</th>
-							<th>Stars</th>
-							<th>Servs</th>
 							<th>Editar</th>
 							<th>Eliminar</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="cliente: ${clientes}">
-							<td th:text="${cliente.id}"></td>
-							<td th:text="${cliente.usuario.nombre}"></td>
-							<td th:text="${cliente.usuario.apellido}"></td>
-							<td th:text="${cliente.usuario.email}"></td>
-							<td th:text="${cliente.usuario.fechaRegistro}"></td>
-							<td th:text="${cliente.usuario.tiempoRegistrado}"></td>
-							<td th:text="${cliente.usuario.estaActivo}"></td>
-							<td th:text="${cliente.usuario.celular}"></td>
-							<td th:text="${cliente.reputacion}"></td>
-							<td th:text="${cliente.numeroServiciosContratados}"></td>
+						<tr th:each="blocker: ${blockers}">
+							<td th:text="${blocker.id}"></td>
+							<td th:text="${blocker.usuario.nombre}"></td>
+							<td th:text="${blocker.usuario.apellido}"></td>
+							<td th:text="${blocker.usuario.email}"></td>
+							<td th:text="${blocker.usuario.fechaRegistro}"></td>
+							<td th:text="${blocker.usuario.tiempoRegistrado}"></td>
+							<td th:text="${blocker.usuario.estaActivo}"></td>
+							<td th:text="${blocker.usuario.celular}"></td>
 							<td><a class="btn btn-outline-info btn-sm"
-								th:href="@{/clientes/form/} + ${cliente.id}">Editar</a></td>
+								th:href="@{/blockers/form/} + ${blocker.id}">Editar</a></td>
 							<td><button class="btn btn-outline-danger btn-sm"
-									th:id="${cliente.id}" onclick="confirm(id)">Eliminar</button></td>
+									th:id="${blocker.id}" onclick="confirm(id)">Eliminar</button></td>
 						</tr>
 					</tbody>
 				</table>
@@ -76,7 +72,7 @@
 			      'El usuario ha sido eliminado.',
 			      'success'
 			    ).then((result) => {
-			    	var url = /*[[@{/clientes/eliminar/}]]*/ 
+			    	var url = /*[[@{/blockers/eliminar/}]]*/ 
 					window.location.href = url + id;
 			    })
 			  }
