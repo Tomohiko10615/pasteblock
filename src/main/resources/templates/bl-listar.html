@@ -40,7 +40,14 @@
 							<td th:text="${blocker.usuario.email}"></td>
 							<td th:text="${blocker.usuario.fechaRegistro}"></td>
 							<td th:text="${blocker.usuario.tiempoRegistrado}"></td>
-							<td th:text="${blocker.usuario.estaActivo}"></td>
+							<td>
+							<img th:if="${blocker.usuario.estaActivo}"
+									class="img-thumbnail rounded" width="40"
+									height="40" th:src="@{/uploads/true.png}" /> <img
+									th:if="${not blocker.usuario.estaActivo}"
+									class="img-thumbnail rounded" width="40"
+									height="40" th:src="@{/uploads/false.png}" />
+							</td>
 							<td th:text="${blocker.usuario.celular}"></td>
 							<td><a class="btn btn-outline-success btn-sm"
 									th:href="@{/blockers/ver/} + ${blocker.id}">Ver perfil</a></td>

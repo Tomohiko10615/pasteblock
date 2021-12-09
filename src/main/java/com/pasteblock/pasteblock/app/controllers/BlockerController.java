@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pasteblock.pasteblock.app.models.entity.Blocker;
-import com.pasteblock.pasteblock.app.models.entity.Cliente;
+import com.pasteblock.pasteblock.app.models.entity.Servicio;
 import com.pasteblock.pasteblock.app.models.services.IBlockerService;
-import com.pasteblock.pasteblock.app.models.services.IClienteService;
+import com.pasteblock.pasteblock.app.models.services.IServicioService;
 import com.pasteblock.pasteblock.app.util.paginator.PageRender;
 
 @Controller
@@ -32,6 +33,9 @@ public class BlockerController {
 	
 	@Autowired
 	private IBlockerService blockerService;
+	
+	@Autowired
+	private IServicioService servicioService;
 	
 	@GetMapping("/listar")
 	public String listar(@RequestParam(name="page", defaultValue="0") int page, Model model) {
@@ -57,7 +61,9 @@ public class BlockerController {
 	@GetMapping("/form")
 	public String crear(Map<String, Object> model) {
 		Blocker blocker = new Blocker();
+		List<Servicio> servicios = servicioService.findAll();
 		model.put("blocker", blocker);
+		model.put("servicios", servicios);
 		model.put("accion", "Crear blocker");
 		return "bl-crear";
 	}
@@ -117,6 +123,8 @@ public class BlockerController {
 			return "redirect:listar";
 		}
 		
+		List<Servicio> servicios = servicioService.findAll();
+		model.put("servicios", servicios);
 		model.put("blocker", blocker);
 		model.put("accion", "Editar blocker");
 		return "bl-crear";
@@ -125,6 +133,8 @@ public class BlockerController {
 	@GetMapping(value="/ver/{id}")
 	public String ver(@PathVariable(value="id") Long id, Model model) {
 		Blocker blocker = blockerService.findOne(id);
+		List<Servicio> servicios = servicioService.findAll();
+		model.addAttribute("servicios", servicios);
 		model.addAttribute("blocker", blocker);
 		model.addAttribute("accion", "Perfil del blocker");
 		return "bl-ver";

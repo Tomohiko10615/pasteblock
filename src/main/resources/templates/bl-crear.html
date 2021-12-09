@@ -82,6 +82,23 @@
 								id="estaActivo">
 						</div>
 					</div>
+					
+					<div class="mb-3 row" th:if="*{disponible != null}">
+						<label class="col-sm-3 col-form-label" for="disponible">Disponible</label>
+						<div class="col-sm-9">
+							<input type="checkbox" th:field="*{disponible}"
+								id="disponible">
+						</div>
+					</div>
+					
+					<div class="mb-3 row">
+						<label class="col-sm-3 col-form-label">Servicios</label>
+						<div class="col-sm-9">
+							<div th:each="servicio : ${servicios}">
+							<input th:value="${servicio.id}" th:field="*{servicios}" th:text="${servicio.tipoServicio}" type="checkbox"/>
+							</div>
+						</div>
+					</div>
 					<div class="mb-3 row">
 						<div>
 							<input type="submit" th:value="${accion}" class="btn btn-primary" />
@@ -92,6 +109,8 @@
 						name="usuario.rol" id="usuario.rol" value="Blocker" /> <input
 						type="hidden" th:if="*{usuario.id != null}"
 						name="usuario.password" id="usuario.password" value="dummy">
+						
+					
 				</form>
 			</div>
 			</div>

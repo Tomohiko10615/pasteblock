@@ -30,16 +30,12 @@ public class Servicio implements Serializable {
 
 	@Column(name = "costo_estimado_maximo")
 	private Float costoEstimadoMaximo;
-	
-	@OneToMany(mappedBy="servicio", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<ServicioPorBlocker> blockers;
-	
-	@OneToMany(mappedBy="servicio", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "servicios")
+	private List<Blocker> blockers = new ArrayList<>();
+
+	@OneToMany(mappedBy = "servicio", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Contrato> contratos;
-	
-	public Servicio() {
-		blockers = new ArrayList<ServicioPorBlocker>();
-	}
 
 	private static final long serialVersionUID = 1L;
 
@@ -73,6 +69,22 @@ public class Servicio implements Serializable {
 
 	public void setCostoEstimadoMaximo(Float costoEstimadoMaximo) {
 		this.costoEstimadoMaximo = costoEstimadoMaximo;
+	}
+
+	public List<Blocker> getBlockers() {
+		return blockers;
+	}
+
+	public void setBlockers(List<Blocker> blockers) {
+		this.blockers = blockers;
+	}
+
+	public List<Contrato> getContratos() {
+		return contratos;
+	}
+
+	public void setContratos(List<Contrato> contratos) {
+		this.contratos = contratos;
 	}
 
 	public static long getSerialversionuid() {

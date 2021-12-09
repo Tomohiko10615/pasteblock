@@ -4,13 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,11 +19,11 @@ public class Distrito implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToMany(mappedBy="distrito", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<DistritoPorBlocker> blockers;
+	@ManyToMany(mappedBy = "distritos")
+	private List<Blocker> blockers;
 	
 	public Distrito() {
-		blockers = new ArrayList<DistritoPorBlocker>();
+		blockers = new ArrayList<Blocker>();
 	}
 	
 	private static final long serialVersionUID = 1L;
@@ -38,11 +36,11 @@ public class Distrito implements Serializable {
 		this.id = id;
 	}
 
-	public List<DistritoPorBlocker> getBlockers() {
+	public List<Blocker> getBlockers() {
 		return blockers;
 	}
 
-	public void setBlockers(List<DistritoPorBlocker> blockers) {
+	public void setBlockers(List<Blocker> blockers) {
 		this.blockers = blockers;
 	}
 

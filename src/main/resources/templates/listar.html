@@ -41,7 +41,12 @@
 							<td th:text="${cliente.usuario.email}"></td>
 							<td th:text="${cliente.usuario.fechaRegistro}"></td>
 							<td th:text="${cliente.usuario.tiempoRegistrado}"></td>
-							<td th:text="${cliente.usuario.estaActivo}"></td>
+							<td><img th:if="${cliente.usuario.estaActivo}"
+								class="img-thumbnail rounded" width="40"
+								height="40" th:src="@{/uploads/true.png}" /> <img
+								th:if="${not cliente.usuario.estaActivo}"
+								class="img-thumbnail rounded" width="40"
+								height="40" th:src="@{/uploads/false.png}" /></td>
 							<td th:text="${cliente.usuario.celular}"></td>
 							<td th:text="${cliente.reputacion}"></td>
 							<td th:text="${cliente.numeroServiciosContratados}"></td>

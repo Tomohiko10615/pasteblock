@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -38,18 +39,17 @@ public class Blocker implements Serializable {
 	
 	@OneToMany(mappedBy="blocker", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Contrato> contratos;
-
-	@OneToMany(mappedBy="blocker", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<ServicioPorBlocker> servicios;
-
-	@OneToMany(mappedBy="blocker", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<DistritoPorBlocker> distritos;
+	
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	private List<Servicio> servicios = new ArrayList<>();
+	
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	private List<Distrito> distritos;
 
 	public Blocker() {
 		mensajes = new ArrayList<Mensaje>();
 		contratos = new ArrayList<Contrato>();
-		servicios = new ArrayList<ServicioPorBlocker>();
-		distritos = new ArrayList<DistritoPorBlocker>();
+		distritos = new ArrayList<Distrito>();
 	}
 
 	@Column(name = "es_nuevo")
@@ -103,22 +103,22 @@ public class Blocker implements Serializable {
 		this.disponible = disponible;
 	}
 
-	public List<ServicioPorBlocker> getServicios() {
+	public List<Servicio> getServicios() {
 		return servicios;
 	}
 
-	public void setServicios(List<ServicioPorBlocker> servicios) {
+	public void setServicios(List<Servicio> servicios) {
 		this.servicios = servicios;
 	}
 
-	public List<DistritoPorBlocker> getDistritos() {
+	public List<Distrito> getDistritos() {
 		return distritos;
 	}
 
-	public void setDistritos(List<DistritoPorBlocker> distritos) {
+	public void setDistritos(List<Distrito> distritos) {
 		this.distritos = distritos;
 	}
-	
+
 	public List<Mensaje> getMensajes() {
 		return mensajes;
 	}
