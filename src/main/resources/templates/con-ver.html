@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/base :: head"></head>
+<body>
+
+	<header th:replace="layout/base :: header"></header>
+
+	<div class="container py-4">
+
+		<div class="card bg-light">
+			<div class="card-header fw-bold" th:text="${accion}"></div>
+			<div class="card-body">
+				<div class="row">
+					<div class="col-sm-6 card-body">
+
+						<div class="row mb-3">
+							<div class="col-sm-6">
+								<h6>Blocker</h6>
+							</div>
+							<div class="col-sm-6 text-secondary"
+								th:text="${contrato.blocker.usuario.nombre + ' ' + contrato.blocker.usuario.apellido}"></div>
+						</div>
+
+						<div class="row mb-3">
+							<div class="col-sm-6">
+								<h6>Cliente</h6>
+							</div>
+							<div class="col-sm-6 text-secondary"
+								th:text="${contrato.cliente.usuario.nombre + ' ' + contrato.cliente.usuario.apellido}"></div>
+						</div>
+
+						<div class="row mb-3">
+							<div class="col-sm-6">
+								<h6>Distrito</h6>
+							</div>
+							<div class="col-sm-6 text-secondary"
+								th:text="${contrato.distrito.nombre}"></div>
+						</div>
+
+						<div class="row mb-3">
+							<div class="col-sm-6">
+								<h6>Costo Final</h6>
+							</div>
+							<div class="col-sm-6 text-secondary"
+								th:text="${'S/. ' + contrato.costoFinal}"></div>
+						</div>
+
+						<div class="row mb-3">
+							<div class="col-sm-6">
+								<h6>Fecha de Inicio</h6>
+							</div>
+							<div class="col-sm-6 text-secondary"
+								th:text="${contrato.fechaInicio}"></div>
+						</div>
+
+						<div class="row mb-3">
+							<div class="col-sm-6">
+								<h6>Fecha Final</h6>
+							</div>
+							<div class="col-sm-6 text-secondary"
+								th:text="${contrato.fechaFinal}"></div>
+						</div>
+
+						<div class="row mb-3">
+							<div class="col-sm-6">
+								<h6>Finalizado</h6>
+							</div>
+							<div class="col-sm-6 text-secondary">
+								<img th:if="${contrato.haFinalizado}"
+									class="img-thumbnail rounded float-start me-3" width="40"
+									height="40" th:src="@{/uploads/true.png}" /> <img
+									th:if="${not contrato.haFinalizado and contrato.haFinalizado != null}"
+									class="img-thumbnail rounded float-start me-3" width="40"
+									height="40" th:src="@{/uploads/false.png}" />
+							</div>
+						</div>
+
+						<div class="row mb-3">
+							<div class="col-sm-6">
+								<h6>Confirmación del Cliente</h6>
+							</div>
+							<div class="col-sm-6 text-secondary">
+							<span th:if="${contrato.confirmacionCliente != null}">
+								<img th:if="${contrato.confirmacionCliente}"
+									class="img-thumbnail rounded float-start me-3" width="40"
+									height="40" th:src="@{/uploads/true.png}" /> <img
+									th:if="${not contrato.confirmacionCliente}"
+									class="img-thumbnail rounded float-start me-3" width="40"
+									height="40" th:src="@{/uploads/false.png}" />
+							</span>
+							<span th:if="${contrato.confirmacionCliente == null}">
+							Sin confirmación</span>
+							</div>
+							
+						</div>
+
+						<div class="row mb-3">
+							<div class="col-sm-6">
+								<h6>Culminación del Blocker</h6>
+							</div>
+							<div class="col-sm-6 text-secondary">
+							<span th:if="${contrato.culminacionBlocker != null}">
+								<img th:if="${contrato.culminacionBlocker}"
+									class="img-thumbnail rounded float-start me-3" width="40"
+									height="40" th:src="@{/uploads/true.png}" /> <img
+									th:if="${not contrato.culminacionBlocker}"
+									class="img-thumbnail rounded float-start me-3" width="40"
+									height="40" th:src="@{/uploads/false.png}" />
+									</span>
+									<span th:if="${contrato.culminacionBlocker == null}">
+							Sin confirmación</span>
+							</div>
+						</div>
+
+						<div class="row mb-3">
+							<div class="col-sm-6">
+								<h6>Servicio</h6>
+							</div>
+							<div class="col-sm-6 text-secondary">
+								<div th:if="${contrato.servicio.id} == 1"
+									style="display: inline-block;">
+									<img class="row img-thumbnail rounded mx-auto" width="120" height="120"
+										th:src="@{/uploads/albañileria.png}" /> <span
+										class="row badge bg-success rounded-pill w-100 mx-auto mt-2 p-2"
+										th:text="${contrato.servicio.tipoServicio}"></span>
+								</div>
+								<div th:if="${contrato.servicio.id} == 2"
+									style="display: inline-block;">
+									<img class="row img-thumbnail rounded mx-auto" width="120" height="120"
+										th:src="@{/uploads/pintura.png}" /> <span
+										class="row badge bg-danger rounded-pill w-100 mx-auto mt-2 p-2"
+										th:text="${contrato.servicio.tipoServicio}"></span>
+								</div>
+								<div th:if="${contrato.servicio.id} == 3"
+									style="display: inline-block;">
+									<img class="row img-thumbnail rounded mx-auto" width="120" height="120"
+										th:src="@{/uploads/electricidad.png}" /> <span
+										class="row badge bg-warning rounded-pill w-100 mx-auto mt-2 p-2"
+										th:text="${contrato.servicio.tipoServicio}"></span>
+								</div>
+								<div th:if="${contrato.servicio.id} == 4"
+									style="display: inline-block;">
+									<img class="row img-thumbnail rounded mx-auto" width="120" height="120"
+										th:src="@{/uploads/gasfiteria.png}" /> <span
+										class="row badge bg-dark rounded-pill w-100 mx-auto mt-2 p-2"
+										th:text="${contrato.servicio.tipoServicio}"></span>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="row mb-3">
+							<div class="col-sm-6">
+								<h6>Calificación del Blocker</h6>
+							</div>
+							<div th:if="${contrato.calificacionBlocker != null}"
+								class="col-sm-6 text-secondary">
+								<img th:if="${contrato.calificacionBlocker >= 1}"
+									class="img-thumbnail rounded float-start me-2" width="30"
+									height="30" th:src="@{/uploads/star.png}" /> <img
+									th:if="${contrato.calificacionBlocker >= 2}"
+									class="img-thumbnail rounded float-start me-2" width="30"
+									height="30" th:src="@{/uploads/star.png}" /> <img
+									th:if="${contrato.calificacionBlocker < 2}"
+									class="img-thumbnail rounded float-start me-2" width="30"
+									height="30" th:src="@{/uploads/no-star.png}" /> <img
+									th:if="${contrato.calificacionBlocker >= 3}"
+									class="img-thumbnail rounded float-start me-2" width="30"
+									height="30" th:src="@{/uploads/star.png}" /> <img
+									th:if="${contrato.calificacionBlocker < 3}"
+									class="img-thumbnail rounded float-start me-2" width="30"
+									height="30" th:src="@{/uploads/no-star.png}" /> <img
+									th:if="${contrato.calificacionBlocker >= 4}"
+									class="img-thumbnail rounded float-start me-2" width="30"
+									height="30" th:src="@{/uploads/star.png}" /> <img
+									th:if="${contrato.calificacionBlocker < 4}"
+									class="img-thumbnail rounded float-start me-2" width="30"
+									height="30" th:src="@{/uploads/no-star.png}" /> <img
+									th:if="${contrato.calificacionBlocker >= 5}"
+									class="img-thumbnail rounded float-start me-3" width="30"
+									height="30" th:src="@{/uploads/star.png}" /> <img
+									th:if="${contrato.calificacionBlocker < 5}"
+									class="img-thumbnail rounded float-start me-3" width="30"
+									height="30" th:src="@{/uploads/no-star.png}" />
+								<div style="height: 30px;" class="d-table">
+									<span class="badge bg-primary d-table-cell align-middle"
+										th:text="${contrato.calificacionBlocker}"></span>
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="row mb-3">
+							<div class="col-sm-6">
+								<h6>Calificación del Cliente</h6>
+							</div>
+							<div th:if="${contrato.calificacionCliente != null}"
+								class="col-sm-6 text-secondary">
+								<img th:if="${contrato.calificacionCliente >= 1}"
+									class="img-thumbnail rounded float-start me-2" width="30"
+									height="30" th:src="@{/uploads/star.png}" /> <img
+									th:if="${contrato.calificacionCliente >= 2}"
+									class="img-thumbnail rounded float-start me-2" width="30"
+									height="30" th:src="@{/uploads/star.png}" /> <img
+									th:if="${contrato.calificacionCliente < 2}"
+									class="img-thumbnail rounded float-start me-2" width="30"
+									height="30" th:src="@{/uploads/no-star.png}" /> <img
+									th:if="${contrato.calificacionCliente >= 3}"
+									class="img-thumbnail rounded float-start me-2" width="30"
+									height="30" th:src="@{/uploads/star.png}" /> <img
+									th:if="${contrato.calificacionCliente < 3}"
+									class="img-thumbnail rounded float-start me-2" width="30"
+									height="30" th:src="@{/uploads/no-star.png}" /> <img
+									th:if="${contrato.calificacionCliente >= 4}"
+									class="img-thumbnail rounded float-start me-2" width="30"
+									height="30" th:src="@{/uploads/star.png}" /> <img
+									th:if="${contrato.calificacionCliente < 4}"
+									class="img-thumbnail rounded float-start me-2" width="30"
+									height="30" th:src="@{/uploads/no-star.png}" /> <img
+									th:if="${contrato.calificacionCliente >= 5}"
+									class="img-thumbnail rounded float-start me-3" width="30"
+									height="30" th:src="@{/uploads/star.png}" /> <img
+									th:if="${contrato.calificacionCliente < 5}"
+									class="img-thumbnail rounded float-start me-3" width="30"
+									height="30" th:src="@{/uploads/no-star.png}" />
+								<div style="height: 30px;" class="d-table">
+									<span class="badge bg-primary d-table-cell align-middle"
+										th:text="${contrato.calificacionCliente}"></span>
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="col-sm-6 card-body">
+						<div class="row mb-3">
+							<div class="col-sm-3">
+								<h6>Comentario del Blocker</h6>
+							</div>
+							<div class="col-sm-9 text-secondary"
+								th:text="${contrato.comentarioBlocker}"></div>
+						</div>
+						<div class="row mb-3">
+							<div class="col-sm-3">
+								<h6>Comentario del Cliente</h6>
+							</div>
+							<div class="col-sm-9 text-secondary"
+								th:text="${contrato.comentarioCliente}"></div>
+						</div>
+						
+						<div class="row mb-3">
+							<div class="col-sm-3">
+								<h6>Observaciones del Blocker</h6>
+							</div>
+							<div class="col-sm-9 text-secondary"
+								th:text="${contrato.observacionesBlocker}"></div>
+						</div>
+						
+						<div class="row mb-3">
+							<div class="col-sm-3">
+								<h6>Observaciones del Cliente</h6>
+							</div>
+							<div class="col-sm-9 text-secondary"
+								th:text="${contrato.observacionesCliente}"></div>
+						</div>
+					</div>
+				</div>
+				<td><a class="btn btn-outline-info btn-lg"
+					th:href="@{/contratos/form/} + ${contrato.id}">Editar contrato</a></td>
+
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/base :: footer"></footer>
+</body>
+</html>

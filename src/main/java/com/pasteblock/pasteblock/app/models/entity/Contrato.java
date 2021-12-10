@@ -3,7 +3,6 @@ package com.pasteblock.pasteblock.app.models.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,6 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "contratos")
 public class Contrato implements Serializable {
@@ -23,14 +24,17 @@ public class Contrato implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Servicio servicio;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Cliente cliente;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Blocker blocker;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Distrito distrito;
 
 	@Column(name = "costo_final")
 	private Float costoFinal;
@@ -38,36 +42,38 @@ public class Contrato implements Serializable {
 	@Column(name = "calificacion_blocker")
 	private Integer calificacionBlocker;
 
-	@Column(name = "calificacion_usuario")
-	private Integer calificacionUsuario;
+	@Column(name = "calificacion_cliente")
+	private Integer calificacionCliente;
 
-	@Column(name = "comentario_blocker")
+	@Column(name = "comentario_blocker", columnDefinition = "VARCHAR(1000)")
 	private String comentarioBlocker;
 
-	@Column(name = "comentario_usuario")
-	private String comentarioUsuario;
+	@Column(name = "comentario_cliente", columnDefinition = "VARCHAR(1000)")
+	private String comentarioCliente;
 
 	@Column(name = "ha_finalizado")
 	private Boolean haFinalizado;
 
 	@Column(name = "fecha_inicio")
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fechaInicio;
 
 	@Column(name = "fecha_final")
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fechaFinal;
 
-	@Column(name = "confirmacion_usuario")
-	private Boolean confirmacionUsuario;
+	@Column(name = "confirmacion_cliente")
+	private Boolean confirmacionCliente;
 
 	@Column(name = "culminacion_blocker")
 	private Boolean culminacionBlocker;
 
-	@Column(name = "observaciones_usuario")
-	private String observacionesUsuario;
+	@Column(name = "observaciones_cliente", columnDefinition = "VARCHAR(1000)")
+	private String observacionesCliente;
 
-	@Column(name = "observaciones_blocker")
+	@Column(name = "observaciones_blocker", columnDefinition = "VARCHAR(1000)")
 	private String observacionesBlocker;
 
 	private static final long serialVersionUID = 1L;
@@ -120,12 +126,12 @@ public class Contrato implements Serializable {
 		this.calificacionBlocker = calificacionBlocker;
 	}
 
-	public Integer getCalificacionUsuario() {
-		return calificacionUsuario;
+	public Integer getCalificacionCliente() {
+		return calificacionCliente;
 	}
 
-	public void setCalificacionUsuario(Integer calificacionUsuario) {
-		this.calificacionUsuario = calificacionUsuario;
+	public void setCalificacionCliente(Integer calificacionCliente) {
+		this.calificacionCliente = calificacionCliente;
 	}
 
 	public String getComentarioBlocker() {
@@ -136,12 +142,12 @@ public class Contrato implements Serializable {
 		this.comentarioBlocker = comentarioBlocker;
 	}
 
-	public String getComentarioUsuario() {
-		return comentarioUsuario;
+	public String getComentarioCliente() {
+		return comentarioCliente;
 	}
 
-	public void setComentarioUsuario(String comentarioUsuario) {
-		this.comentarioUsuario = comentarioUsuario;
+	public void setComentarioCliente(String comentarioCliente) {
+		this.comentarioCliente = comentarioCliente;
 	}
 
 	public Boolean getHaFinalizado() {
@@ -168,12 +174,12 @@ public class Contrato implements Serializable {
 		this.fechaFinal = fechaFinal;
 	}
 
-	public Boolean getConfirmacionUsuario() {
-		return confirmacionUsuario;
+	public Boolean getConfirmacionCliente() {
+		return confirmacionCliente;
 	}
 
-	public void setConfirmacionUsuario(Boolean confirmacionUsuario) {
-		this.confirmacionUsuario = confirmacionUsuario;
+	public void setConfirmacionCliente(Boolean confirmacionCliente) {
+		this.confirmacionCliente = confirmacionCliente;
 	}
 
 	public Boolean getCulminacionBlocker() {
@@ -184,12 +190,12 @@ public class Contrato implements Serializable {
 		this.culminacionBlocker = culminacionBlocker;
 	}
 
-	public String getObservacionesUsuario() {
-		return observacionesUsuario;
+	public String getObservacionesCliente() {
+		return observacionesCliente;
 	}
 
-	public void setObservacionesUsuario(String observacionesUsuario) {
-		this.observacionesUsuario = observacionesUsuario;
+	public void setObservacionesCliente(String observacionesCliente) {
+		this.observacionesCliente = observacionesCliente;
 	}
 
 	public String getObservacionesBlocker() {
@@ -198,6 +204,14 @@ public class Contrato implements Serializable {
 
 	public void setObservacionesBlocker(String observacionesBlocker) {
 		this.observacionesBlocker = observacionesBlocker;
+	}
+
+	public Distrito getDistrito() {
+		return distrito;
+	}
+
+	public void setDistrito(Distrito distrito) {
+		this.distrito = distrito;
 	}
 
 	public static long getSerialversionuid() {

@@ -2,6 +2,59 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="layout/base :: head"></head>
+<style>
+.dropdown-check-list {
+	display: inline-block;
+}
+
+.dropdown-check-list .anchor {
+	position: relative;
+	cursor: pointer;
+	display: inline-block;
+	padding: 5px 50px 5px 10px;
+	border: 1px solid #ccc;
+}
+
+.dropdown-check-list .anchor:after {
+	position: absolute;
+	content: "";
+	border-left: 2px solid black;
+	border-top: 2px solid black;
+	padding: 5px;
+	right: 10px;
+	top: 20%;
+	-moz-transform: rotate(-135deg);
+	-ms-transform: rotate(-135deg);
+	-o-transform: rotate(-135deg);
+	-webkit-transform: rotate(-135deg);
+	transform: rotate(-135deg);
+}
+
+.dropdown-check-list .anchor:active:after {
+	right: 8px;
+	top: 21%;
+}
+
+.dropdown-check-list ul.items {
+	padding: 2px;
+	display: none;
+	margin: 0;
+	border: 1px solid #ccc;
+	border-top: none;
+}
+
+.dropdown-check-list ul.items li {
+	list-style: none;
+}
+
+.dropdown-check-list.visible .anchor {
+	color: #0094ff;
+}
+
+.dropdown-check-list.visible .items {
+	display: block;
+}
+</style>
 
 <body>
 
@@ -11,114 +64,137 @@
 		<div class="card bg-light">
 			<div class="card-header fw-bold" th:text="${accion}"></div>
 			<div class="card-body">
-				<img th:if="${blocker.foto != null}" class="img-thumbnail rounded float-start me-3"
+				<img th:if="${blocker.foto != null}"
+					class="img-thumbnail rounded float-start me-3"
 					style="max-width: 25%;" th:src="@{'/uploads/' + ${blocker.foto}}" />
-					<div class="card bg-light">
+				<div class="card bg-light">
 					<div class="card-body">
-				<form th:action="@{/blockers/form}" method="post"
-					th:object="${blocker}" enctype="multipart/form-data">
+						<form th:action="@{/blockers/form}" method="post"
+							th:object="${blocker}" enctype="multipart/form-data">
 
-					<div class="mb-3 row">
-						<label class="col-sm-3 col-form-label" for="nombre">Nombre</label>
-						<div class="col-sm-9">
-							<input type="text" th:field="*{usuario.nombre}" id="nombre"
-								class="form-control">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<label class="col-sm-3 col-form-label" for="apellido">Apellido</label>
-						<div class="col-sm-9">
-							<input type="text" th:field="*{usuario.apellido}" id="apellido"
-								class="form-control">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<label class="col-sm-3 col-form-label" for="email">Email</label>
-						<div class="col-sm-9">
-							<input type="email" th:field="*{usuario.email}" id="email"
-								class="form-control">
-						</div>
-					</div>
-					<div class="mb-3 row" th:if="*{usuario.id == null}">
-						<label class="col-sm-3 col-form-label" for="password">Password</label>
-						<div class="col-sm-9">
-							<input type="password" th:field="*{usuario.password}"
-								id="password" class="form-control">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<label class="col-sm-3 col-form-label" for="celular">Celular</label>
-						<div class="col-sm-9">
-							<input type="text" pattern="[0-9]{9}"
-								th:field="*{usuario.celular}" id="celular" class="form-control">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<label class="col-sm-3 col-form-label" for="presentacion">Presentación</label>
-						<div class="col-sm-9">
-							<textarea rows = "5" cols = "60" th:field="*{presentacion}" id="presentacion"
-								class="form-control"></textarea>
-						</div>
-					</div>
-					<div class="mb-3 row" th:if="*{usuario.fechaRegistro != null}">
-						<label class="col-sm-3 col-form-label" for="fechaRegistro">Fecha
-							de Registro</label>
-						<div class="col-sm-9">
-							<input type="text" th:field="*{usuario.fechaRegistro}"
-								id="fechaRegistro" class="form-control">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<label class="col-sm-3 col-form-label" for="foto">Foto</label>
-						<div class="col-sm-9">
-							<input type="file" name="file"
-								id="foto" class="form-control">
-						</div>
-					</div>
-					<div class="mb-3 row" th:if="*{usuario.estaActivo != null}">
-						<label class="col-sm-3 col-form-label" for="estaActivo">Activo</label>
-						<div class="col-sm-9">
-							<input type="checkbox" th:field="*{usuario.estaActivo}"
-								id="estaActivo">
-						</div>
-					</div>
-					
-					<div class="mb-3 row" th:if="*{disponible != null}">
-						<label class="col-sm-3 col-form-label" for="disponible">Disponible</label>
-						<div class="col-sm-9">
-							<input type="checkbox" th:field="*{disponible}"
-								id="disponible">
-						</div>
-					</div>
-					
-					<div class="mb-3 row">
-						<label class="col-sm-3 col-form-label">Servicios</label>
-						<div class="col-sm-9">
-							<div th:each="servicio : ${servicios}">
-							<input th:value="${servicio.id}" th:field="*{servicios}" th:text="${servicio.tipoServicio}" type="checkbox"/>
+							<div class="mb-3 row">
+								<label class="col-sm-3 col-form-label" for="nombre">Nombre</label>
+								<div class="col-sm-9">
+									<input type="text" th:field="*{usuario.nombre}" id="nombre"
+										class="form-control">
+								</div>
 							</div>
-						</div>
+							<div class="mb-3 row">
+								<label class="col-sm-3 col-form-label" for="apellido">Apellido</label>
+								<div class="col-sm-9">
+									<input type="text" th:field="*{usuario.apellido}" id="apellido"
+										class="form-control">
+								</div>
+							</div>
+							<div class="mb-3 row">
+								<label class="col-sm-3 col-form-label" for="email">Email</label>
+								<div class="col-sm-9">
+									<input type="email" th:field="*{usuario.email}" id="email"
+										class="form-control">
+								</div>
+							</div>
+							<div class="mb-3 row" th:if="*{usuario.id == null}">
+								<label class="col-sm-3 col-form-label" for="password">Password</label>
+								<div class="col-sm-9">
+									<input type="password" th:field="*{usuario.password}"
+										id="password" class="form-control">
+								</div>
+							</div>
+							<div class="mb-3 row">
+								<label class="col-sm-3 col-form-label" for="celular">Celular</label>
+								<div class="col-sm-9">
+									<input type="text" pattern="[0-9]{9}"
+										th:field="*{usuario.celular}" id="celular"
+										class="form-control">
+								</div>
+							</div>
+							<div class="mb-3 row">
+								<label class="col-sm-3 col-form-label" for="presentacion">Presentación</label>
+								<div class="col-sm-9">
+									<textarea rows="5" cols="60" th:field="*{presentacion}"
+										id="presentacion" class="form-control"></textarea>
+								</div>
+							</div>
+							<div class="mb-3 row" th:if="*{usuario.fechaRegistro != null}">
+								<label class="col-sm-3 col-form-label" for="fechaRegistro">Fecha
+									de Registro</label>
+								<div class="col-sm-9">
+									<input type="text" th:field="*{usuario.fechaRegistro}"
+										id="fechaRegistro" class="form-control">
+								</div>
+							</div>
+							<div class="mb-3 row">
+								<label class="col-sm-3 col-form-label" for="foto">Foto</label>
+								<div class="col-sm-9">
+									<input type="file" name="file" id="foto" class="form-control">
+								</div>
+							</div>
+							<div class="mb-3 row" th:if="*{usuario.estaActivo != null}">
+								<label class="col-sm-3 col-form-label" for="estaActivo">Activo</label>
+								<div class="col-sm-9">
+									<input type="checkbox" th:field="*{usuario.estaActivo}"
+										id="estaActivo">
+								</div>
+							</div>
+
+							<div class="mb-3 row" th:if="*{disponible != null}">
+								<label class="col-sm-3 col-form-label" for="disponible">Disponible</label>
+								<div class="col-sm-9">
+									<input type="checkbox" th:field="*{disponible}" id="disponible">
+								</div>
+							</div>
+
+							<div class="mb-3 row">
+								<label class="col-sm-3 col-form-label">Servicios</label>
+								<div class="col-sm-9">
+									<div th:each="servicio : ${servicios}">
+										<input th:value="${servicio.id}" th:field="*{servicios}"
+											th:text="${servicio.tipoServicio}" type="checkbox" />
+									</div>
+								</div>
+							</div>
+
+							<div class="mb-3 row">
+								<label class="col-sm-3 col-form-label">Distritos</label>
+								<div id="list" class="col-sm-9 dropdown-check-list"
+									tabindex="100">
+									<span class="anchor">Seleccionar distritos</span>
+									<ul class="items">
+										<li th:each="distrito : ${distritos}"><input
+											type="checkbox" th:value="${distrito.id}"
+											th:field="*{distritos}" th:text="${distrito.nombre}" /></li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="mb-3 row">
+								<div>
+									<input type="submit" th:value="${accion}"
+										class="btn btn-primary" />
+								</div>
+							</div>
+							<input type="hidden" th:field="*{usuario.id}" /> <input
+								type="hidden" th:field="*{id}" /> <input type="hidden"
+								name="usuario.rol" id="usuario.rol" value="Blocker" /> <input
+								type="hidden" th:if="*{usuario.id != null}"
+								name="usuario.password" id="usuario.password" value="dummy">
+						</form>
 					</div>
-					<div class="mb-3 row">
-						<div>
-							<input type="submit" th:value="${accion}" class="btn btn-primary" />
-						</div>
-					</div>
-					<input type="hidden" th:field="*{usuario.id}" /> <input
-						type="hidden" th:field="*{id}" /> <input type="hidden"
-						name="usuario.rol" id="usuario.rol" value="Blocker" /> <input
-						type="hidden" th:if="*{usuario.id != null}"
-						name="usuario.password" id="usuario.password" value="dummy">
-						
-					
-				</form>
-			</div>
-			</div>
+				</div>
 			</div>
 		</div>
 	</div>
 
 	<footer th:replace="layout/base :: footer"></footer>
+	<script>
+		var checkList = document.getElementById('list');
+		checkList.getElementsByClassName('anchor')[0].onclick = function(evt) {
+			if (checkList.classList.contains('visible'))
+				checkList.classList.remove('visible');
+			else
+				checkList.classList.add('visible');
+		}
+	</script>
 
 </body>
 </html>

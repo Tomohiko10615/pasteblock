@@ -34,39 +34,43 @@
 							<div class="col-sm-2">
 								<h6>Stars</h6>
 							</div>
-							<div th:if="${blocker.reputacion != null}" class="col-sm-10 text-secondary">
+							<div th:if="${blocker.reputacion != null}"
+								class="col-sm-10 text-secondary">
 								<img th:if="${blocker.reputacion >= 0.5}"
 									class="img-thumbnail rounded float-start me-3" width="30"
-									height="30" th:src="@{/uploads/star.png}" />
-									<img th:if="${blocker.reputacion < 0.5}"
+									height="30" th:src="@{/uploads/star.png}" /> <img
+									th:if="${blocker.reputacion < 0.5}"
+									class="img-thumbnail rounded float-start me-3" width="30"
+									height="30" th:src="@{/uploads/no-star.png}" /> <img
+									th:if="${blocker.reputacion >= 1.5}"
+									class="img-thumbnail rounded float-start me-3" width="30"
+									height="30" th:src="@{/uploads/star.png}" /> <img
+									th:if="${blocker.reputacion < 1.5}"
+									class="img-thumbnail rounded float-start me-3" width="30"
+									height="30" th:src="@{/uploads/no-star.png}" /> <img
+									th:if="${blocker.reputacion >= 2.5}"
+									class="img-thumbnail rounded float-start me-3" width="30"
+									height="30" th:src="@{/uploads/star.png}" /> <img
+									th:if="${blocker.reputacion < 2.5}"
+									class="img-thumbnail rounded float-start me-3" width="30"
+									height="30" th:src="@{/uploads/no-star.png}" /> <img
+									th:if="${blocker.reputacion >= 3.5}"
+									class="img-thumbnail rounded float-start me-3" width="30"
+									height="30" th:src="@{/uploads/star.png}" /> <img
+									th:if="${blocker.reputacion < 3.5}"
+									class="img-thumbnail rounded float-start me-3" width="30"
+									height="30" th:src="@{/uploads/no-star.png}" /> <img
+									th:if="${blocker.reputacion >= 4.5}"
+									class="img-thumbnail rounded float-start me-3" width="30"
+									height="30" th:src="@{/uploads/star.png}" /> <img
+									th:if="${blocker.reputacion < 4.5}"
 									class="img-thumbnail rounded float-start me-3" width="30"
 									height="30" th:src="@{/uploads/no-star.png}" />
-								<img th:if="${blocker.reputacion >= 1.5}"
-									class="img-thumbnail rounded float-start me-3" width="30"
-									height="30" th:src="@{/uploads/star.png}" />
-									<img th:if="${blocker.reputacion < 1.5}"
-									class="img-thumbnail rounded float-start me-3" width="30"
-									height="30" th:src="@{/uploads/no-star.png}" />
-								<img th:if="${blocker.reputacion >= 2.5}"
-									class="img-thumbnail rounded float-start me-3" width="30"
-									height="30" th:src="@{/uploads/star.png}" />
-									<img th:if="${blocker.reputacion < 2.5}"
-									class="img-thumbnail rounded float-start me-3" width="30"
-									height="30" th:src="@{/uploads/no-star.png}" />
-								<img th:if="${blocker.reputacion >= 3.5}"
-									class="img-thumbnail rounded float-start me-3" width="30"
-									height="30" th:src="@{/uploads/star.png}" />
-									<img th:if="${blocker.reputacion < 3.5}"
-									class="img-thumbnail rounded float-start me-3" width="30"
-									height="30" th:src="@{/uploads/no-star.png}" />
-								<img th:if="${blocker.reputacion >= 4.5}"
-									class="img-thumbnail rounded float-start me-3" width="30"
-									height="30" th:src="@{/uploads/star.png}" />
-									<img th:if="${blocker.reputacion < 4.5}"
-									class="img-thumbnail rounded float-start me-3" width="30"
-									height="30" th:src="@{/uploads/no-star.png}" />
-								<div style="height: 30px;" class="d-table"><span class="badge bg-primary d-table-cell align-middle" th:text="${blocker.reputacion}"></span></div>
-								
+								<div style="height: 30px;" class="d-table">
+									<span class="badge bg-primary d-table-cell align-middle"
+										th:text="${blocker.reputacion}"></span>
+								</div>
+
 							</div>
 
 						</div>
@@ -131,19 +135,27 @@
 								<div class="col-sm-2" th:each="servicio : ${blocker.servicios}">
 									<div th:if="${servicio.id} == 1">
 										<img class="img-thumbnail rounded" width="120" height="120"
-											th:src="@{/uploads/albañileria.png}" />
+											th:src="@{/uploads/albañileria.png}" /> <span
+											class="badge bg-success rounded-pill w-100 mt-2 p-2"
+											th:text="${servicio.tipoServicio}"></span>
 									</div>
 									<div th:if="${servicio.id} == 2">
 										<img class="img-thumbnail rounded" width="120" height="120"
-											th:src="@{/uploads/pintura.png}" />
+											th:src="@{/uploads/pintura.png}" /> <span
+											class="badge bg-danger rounded-pill w-100 mt-2 p-2"
+											th:text="${servicio.tipoServicio}"></span>
 									</div>
 									<div th:if="${servicio.id} == 3">
 										<img class="img-thumbnail rounded" width="120" height="120"
-											th:src="@{/uploads/electricidad.png}" />
+											th:src="@{/uploads/electricidad.png}" /> <span
+											class="badge bg-warning rounded-pill w-100 mt-2 p-2"
+											th:text="${servicio.tipoServicio}"></span>
 									</div>
 									<div th:if="${servicio.id} == 4">
 										<img class="img-thumbnail rounded" width="120" height="120"
-											th:src="@{/uploads/gasfiteria.png}" />
+											th:src="@{/uploads/gasfiteria.png}" /> <span
+											class="badge bg-dark rounded-pill w-100 mt-2 p-2"
+											th:text="${servicio.tipoServicio}"></span>
 									</div>
 
 								</div>
@@ -166,6 +178,24 @@
 							<div class="col-sm-10 text-secondary"
 								th:text="${blocker.numeroTrabajosCulminados}"></div>
 						</div>
+
+						<div class="row mb-3">
+							<div class="col-sm-2">
+								<h6>Distritos</h6>
+							</div>
+							<div class="row col-sm-10">
+								<div class="col-sm-4 mb-3"
+									th:each="distrito : ${blocker.distritos}">
+									<h6>
+										<span class="badge bg-info rounded-pill w-100 p-2"
+											th:text="${distrito.nombre}"></span>
+									</h6>
+								</div>
+							</div>
+						</div>
+
+						<td><a class="btn btn-outline-info btn-lg"
+								th:href="@{/blockers/form/} + ${blocker.id}">Editar perfil</a></td>
 
 					</div>
 				</div>

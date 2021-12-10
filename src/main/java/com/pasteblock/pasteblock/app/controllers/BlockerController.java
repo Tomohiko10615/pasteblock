@@ -22,8 +22,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pasteblock.pasteblock.app.models.entity.Blocker;
+import com.pasteblock.pasteblock.app.models.entity.Distrito;
 import com.pasteblock.pasteblock.app.models.entity.Servicio;
 import com.pasteblock.pasteblock.app.models.services.IBlockerService;
+import com.pasteblock.pasteblock.app.models.services.IDistritoService;
 import com.pasteblock.pasteblock.app.models.services.IServicioService;
 import com.pasteblock.pasteblock.app.util.paginator.PageRender;
 
@@ -37,10 +39,13 @@ public class BlockerController {
 	@Autowired
 	private IServicioService servicioService;
 	
+	@Autowired
+	private IDistritoService distritoService;
+	
 	@GetMapping("/listar")
 	public String listar(@RequestParam(name="page", defaultValue="0") int page, Model model) {
 		
-		Pageable pageRequest = PageRequest.of(page, 4);
+		Pageable pageRequest = PageRequest.of(page, 5);
 		
 		Page<Blocker> blockers = blockerService.findAll(pageRequest);
 		
@@ -62,8 +67,10 @@ public class BlockerController {
 	public String crear(Map<String, Object> model) {
 		Blocker blocker = new Blocker();
 		List<Servicio> servicios = servicioService.findAll();
+		List<Distrito> distritos = distritoService.findAll();
 		model.put("blocker", blocker);
 		model.put("servicios", servicios);
+		model.put("distritos", distritos);
 		model.put("accion", "Crear blocker");
 		return "bl-crear";
 	}
@@ -109,7 +116,9 @@ public class BlockerController {
 			flash.addFlashAttribute("success", "Blocker actualizado con éxito");
 		}
 		
-		return "redirect:listar";
+		String redirect = "redirect:ver/" + blocker.getId(); 
+		
+		return redirect;
 	}
 	
 	@GetMapping("/form/{id}")
@@ -123,7 +132,9 @@ public class BlockerController {
 			return "redirect:listar";
 		}
 		
+		List<Distrito> distritos = distritoService.findAll();
 		List<Servicio> servicios = servicioService.findAll();
+		model.put("distritos", distritos);
 		model.put("servicios", servicios);
 		model.put("blocker", blocker);
 		model.put("accion", "Editar blocker");

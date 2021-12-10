@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/base :: head"></head>
+<style>
+.dropdown-check-list {
+	display: inline-block;
+}
+
+.dropdown-check-list .anchor {
+	position: relative;
+	cursor: pointer;
+	display: inline-block;
+	padding: 5px 50px 5px 10px;
+	border: 1px solid #ccc;
+}
+
+.dropdown-check-list .anchor:after {
+	position: absolute;
+	content: "";
+	border-left: 2px solid black;
+	border-top: 2px solid black;
+	padding: 5px;
+	right: 10px;
+	top: 20%;
+	-moz-transform: rotate(-135deg);
+	-ms-transform: rotate(-135deg);
+	-o-transform: rotate(-135deg);
+	-webkit-transform: rotate(-135deg);
+	transform: rotate(-135deg);
+}
+
+.dropdown-check-list .anchor:active:after {
+	right: 8px;
+	top: 21%;
+}
+
+.dropdown-check-list ul.items {
+	padding: 2px;
+	display: none;
+	margin: 0;
+	border: 1px solid #ccc;
+	border-top: none;
+}
+
+.dropdown-check-list ul.items li {
+	list-style: none;
+}
+
+.dropdown-check-list.visible .anchor {
+	color: #0094ff;
+}
+
+.dropdown-check-list.visible .items {
+	display: block;
+}
+</style>
+
+<body>
+
+	<header th:replace="layout/base :: header"></header>
+
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header fw-bold"
+				th:text="${accion + ' ' + contrato.servicio.tipoServicio + '-' + contrato.id + '-' + contrato.blocker.id + '-' + contrato.cliente.id}"></div>
+			<div class="card-body">
+				<form th:action="@{/contratos/form}" method="post"
+					th:object="${contrato}">
+
+					<div class="mb-3 row">
+						<label class="col-sm-3 col-form-label">Costo final</label>
+						<div class="col-sm-9">
+							<input type="number" step="0.01" th:field="*{costoFinal}"
+								id="costoFinal" class="form-control">
+						</div>
+					</div>
+
+					<div class="mb-3 row">
+						<label class="col-sm-3 col-form-label">Finalizado</label>
+						<div class="col-sm-9">
+							<input type="checkbox" th:field="*{haFinalizado}"
+								id="haFinalizado">
+						</div>
+					</div>
+
+					<div class="mb-3 row">
+						<label class="col-sm-3 col-form-label">Fecha de Inicio</label>
+						<div class="col-sm-9">
+							<input type="text" th:field="*{fechaInicio}" id="fechaInicio"
+								class="form-control">
+						</div>
+					</div>
+
+					<div class="mb-3 row">
+						<label class="col-sm-3 col-form-label">Fecha Final</label>
+						<div class="col-sm-9">
+							<input type="text" th:field="*{fechaFinal}" id="fechaFinal"
+								class="form-control">
+						</div>
+					</div>
+
+					<div class="mb-3 row">
+						<label class="col-sm-3 col-form-label">Calificación del
+							blocker</label>
+						<div class="col-sm-9">
+							<input type="number" min="1" max="5"
+								th:field="*{calificacionBlocker}" id="calificacionBlocker"
+								class="form-control">
+						</div>
+					</div>
+
+					<div class="mb-3 row">
+						<label class="col-sm-3 col-form-label">Calificación del
+							cliente</label>
+						<div class="col-sm-9">
+							<input type="number" min="1" max="5"
+								th:field="*{calificacionCliente}" id="calificacionCliente"
+								class="form-control">
+						</div>
+					</div>
+
+					<div class="mb-3 row">
+						<label class="col-sm-3 col-form-label">Comentario del
+							blocker</label>
+						<div class="col-sm-9">
+							<textarea rows="5" cols="60" th:field="*{comentarioBlocker}"
+								id="comentarioBlocker" class="form-control"></textarea>
+						</div>
+					</div>
+
+					<div class="mb-3 row">
+						<label class="col-sm-3 col-form-label">Comentario del
+							cliente</label>
+						<div class="col-sm-9">
+							<textarea rows="5" cols="60" th:field="*{comentarioCliente}"
+								id="comentarioCliente" class="form-control"></textarea>
+						</div>
+					</div>
+					
+					<div class="mb-3 row">
+						<label class="col-sm-3 col-form-label">Confirmación del Cliente</label>
+						<div class="col-sm-9">
+							<input type="checkbox" th:field="*{confirmacionCliente}"
+								id="confirmacionCliente">
+						</div>
+					</div>
+					
+					<div class="mb-3 row">
+						<label class="col-sm-3 col-form-label">Culminación del Blocker</label>
+						<div class="col-sm-9">
+							<input type="checkbox" th:field="*{culminacionBlocker}"
+								id="culminacionBlocker">
+						</div>
+					</div>
+					
+					<div class="mb-3 row">
+						<label class="col-sm-3 col-form-label">Observaciones del
+							blocker</label>
+						<div class="col-sm-9">
+							<textarea rows="5" cols="60" th:field="*{observacionesBlocker}"
+								id="observacionesBlocker" class="form-control"></textarea>
+						</div>
+					</div>
+
+					<div class="mb-3 row">
+						<label class="col-sm-3 col-form-label">Observaciones del
+							cliente</label>
+						<div class="col-sm-9">
+							<textarea rows="5" cols="60" th:field="*{observacionesCliente}"
+								id="observacionesCliente" class="form-control"></textarea>
+						</div>
+					</div>
+
+
+					<div class="mb-3 row">
+						<div>
+							<input type="submit" th:value="${accion}" class="btn btn-primary" />
+						</div>
+					</div>
+					<input type="hidden" th:field="*{id}" /> <input type="hidden"
+						th:field="*{servicio}" /> <input type="hidden"
+						th:field="*{distrito}" /> <input type="hidden"
+						th:field="*{cliente}" /> <input type="hidden"
+						th:field="*{blocker}" />
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/base :: footer"></footer>
+	<script>
+		var checkList = document.getElementById('list');
+		checkList.getElementsByClassName('anchor')[0].onclick = function(evt) {
+			if (checkList.classList.contains('visible'))
+				checkList.classList.remove('visible');
+			else
+				checkList.classList.add('visible');
+		}
+	</script>
+
+</body>
+</html>

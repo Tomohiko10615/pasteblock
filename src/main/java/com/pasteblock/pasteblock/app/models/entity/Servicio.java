@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -31,8 +32,12 @@ public class Servicio implements Serializable {
 	@Column(name = "costo_estimado_maximo")
 	private Float costoEstimadoMaximo;
 
-	@OneToMany(mappedBy = "servicios")
-	private List<Blocker> blockers = new ArrayList<>();
+	@ManyToMany(mappedBy = "servicios")
+	private List<Blocker> blockers;
+	
+	public Servicio() {
+		blockers = new ArrayList<Blocker>();
+	}
 
 	@OneToMany(mappedBy = "servicio", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Contrato> contratos;
