@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +13,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
@@ -19,7 +22,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -37,12 +40,16 @@ public class Usuario implements Serializable {
 	private String apellido;
 	
 	@Email
+	@NotBlank
 	private String email;
 	
-	@NotEmpty
+	@NotBlank
+	@Size(min = 8, max = 15)
 	private String password;
 	
-	private String rol;
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name="usuario_id")
+	private List<Rol> roles;
 	
 	@NotBlank
 	private String celular;
@@ -110,12 +117,12 @@ public class Usuario implements Serializable {
 		this.password = password;
 	}
 
-	public String getRol() {
-		return rol;
+	public List<Rol> getRoles() {
+		return roles;
 	}
 
-	public void setRol(String rol) {
-		this.rol = rol;
+	public void setRoles(List<Rol> roles) {
+		this.roles = roles;
 	}
 
 	public String getCelular() {

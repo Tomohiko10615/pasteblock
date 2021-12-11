@@ -1,5 +1,7 @@
 package com.pasteblock.pasteblock.app.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pasteblock.pasteblock.app.models.entity.Cliente;
+import com.pasteblock.pasteblock.app.models.entity.Rol;
 import com.pasteblock.pasteblock.app.models.services.IClienteService;
 import com.pasteblock.pasteblock.app.util.paginator.PageRender;
 
@@ -58,6 +61,11 @@ public class ClienteController {
 	@PostMapping("/form")
 	public String guardar(Cliente cliente, RedirectAttributes flash) {
 		if (cliente.getId() == null) {
+			List<Rol> roles = new ArrayList<Rol>();
+			cliente.getUsuario().setRoles(roles);
+			Rol rol = new Rol();
+			rol.setRol("Cliente");
+			cliente.getUsuario().getRoles().add(rol);
 			cliente.getUsuario().setTiempoRegistrado();
 			clienteService.save(cliente);
 			flash.addFlashAttribute("success", "Cliente creado con éxito");

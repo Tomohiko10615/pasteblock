@@ -109,15 +109,16 @@
 								</div>
 							</div>
 							<div class="mb-3 row">
-								<label class="col-sm-3 col-form-label fw-bold" for="presentacion">Presentación</label>
+								<label class="col-sm-3 col-form-label fw-bold"
+									for="presentacion">Presentación</label>
 								<div class="col-sm-9">
 									<textarea rows="5" cols="60" th:field="*{presentacion}"
 										id="presentacion" class="form-control"></textarea>
 								</div>
 							</div>
 							<div class="mb-3 row" th:if="*{usuario.fechaRegistro != null}">
-								<label class="col-sm-3 col-form-label fw-bold" for="fechaRegistro">Fecha
-									de Registro</label>
+								<label class="col-sm-3 col-form-label fw-bold"
+									for="fechaRegistro">Fecha de Registro</label>
 								<div class="col-sm-9">
 									<input type="text" th:field="*{usuario.fechaRegistro}"
 										id="fechaRegistro" class="form-control">
@@ -175,9 +176,8 @@
 							</div>
 							<input type="hidden" th:field="*{usuario.id}" /> <input
 								type="hidden" th:field="*{id}" /> <input type="hidden"
-								name="usuario.rol" id="usuario.rol" value="Blocker" /> <input
-								type="hidden" th:if="*{usuario.id != null}"
-								name="usuario.password" id="usuario.password" value="dummy">
+								th:if="*{usuario.id != null}" name="usuario.password"
+								id="usuario.password" value="dummy">
 						</form>
 					</div>
 				</div>

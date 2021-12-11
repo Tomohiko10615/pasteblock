@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +24,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pasteblock.pasteblock.app.models.entity.Blocker;
 import com.pasteblock.pasteblock.app.models.entity.Distrito;
+import com.pasteblock.pasteblock.app.models.entity.Rol;
 import com.pasteblock.pasteblock.app.models.entity.Servicio;
+import com.pasteblock.pasteblock.app.models.entity.Usuario;
 import com.pasteblock.pasteblock.app.models.services.IBlockerService;
 import com.pasteblock.pasteblock.app.models.services.IDistritoService;
 import com.pasteblock.pasteblock.app.models.services.IServicioService;
@@ -68,6 +71,13 @@ public class BlockerController {
 		Blocker blocker = new Blocker();
 		List<Servicio> servicios = servicioService.findAll();
 		List<Distrito> distritos = distritoService.findAll();
+		//Usuario usuario = new Usuario();
+		//blocker.setUsuario(usuario);
+		//List<Rol> roles = new ArrayList<Rol>();
+		//blocker.getUsuario().setRoles(roles);
+		//Rol rol = new Rol();
+		//rol.setRol("Blocker");
+		//blocker.getUsuario().getRoles().add(rol);
 		model.put("blocker", blocker);
 		model.put("servicios", servicios);
 		model.put("distritos", distritos);
@@ -91,7 +101,14 @@ public class BlockerController {
 			}
 		}
 		
+		
+		
 		if (blocker.getId() == null) {
+			List<Rol> roles = new ArrayList<Rol>();
+			blocker.getUsuario().setRoles(roles);
+			Rol rol = new Rol();
+			rol.setRol("Blocker");
+			blocker.getUsuario().getRoles().add(rol);
 			blocker.getUsuario().setTiempoRegistrado();
 			blockerService.save(blocker);
 			flash.addFlashAttribute("success", "Blocker creado con éxito");
