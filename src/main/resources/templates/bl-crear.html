@@ -73,35 +73,35 @@
 							th:object="${blocker}" enctype="multipart/form-data">
 
 							<div class="mb-3 row">
-								<label class="col-sm-3 col-form-label" for="nombre">Nombre</label>
+								<label class="col-sm-3 col-form-label fw-bold" for="nombre">Nombre</label>
 								<div class="col-sm-9">
 									<input type="text" th:field="*{usuario.nombre}" id="nombre"
 										class="form-control">
 								</div>
 							</div>
 							<div class="mb-3 row">
-								<label class="col-sm-3 col-form-label" for="apellido">Apellido</label>
+								<label class="col-sm-3 col-form-label fw-bold" for="apellido">Apellido</label>
 								<div class="col-sm-9">
 									<input type="text" th:field="*{usuario.apellido}" id="apellido"
 										class="form-control">
 								</div>
 							</div>
 							<div class="mb-3 row">
-								<label class="col-sm-3 col-form-label" for="email">Email</label>
+								<label class="col-sm-3 col-form-label fw-bold" for="email">Email</label>
 								<div class="col-sm-9">
 									<input type="email" th:field="*{usuario.email}" id="email"
 										class="form-control">
 								</div>
 							</div>
 							<div class="mb-3 row" th:if="*{usuario.id == null}">
-								<label class="col-sm-3 col-form-label" for="password">Password</label>
+								<label class="col-sm-3 col-form-label fw-bold" for="password">Password</label>
 								<div class="col-sm-9">
 									<input type="password" th:field="*{usuario.password}"
 										id="password" class="form-control">
 								</div>
 							</div>
 							<div class="mb-3 row">
-								<label class="col-sm-3 col-form-label" for="celular">Celular</label>
+								<label class="col-sm-3 col-form-label fw-bold" for="celular">Celular</label>
 								<div class="col-sm-9">
 									<input type="text" pattern="[0-9]{9}"
 										th:field="*{usuario.celular}" id="celular"
@@ -109,14 +109,14 @@
 								</div>
 							</div>
 							<div class="mb-3 row">
-								<label class="col-sm-3 col-form-label" for="presentacion">Presentación</label>
+								<label class="col-sm-3 col-form-label fw-bold" for="presentacion">Presentación</label>
 								<div class="col-sm-9">
 									<textarea rows="5" cols="60" th:field="*{presentacion}"
 										id="presentacion" class="form-control"></textarea>
 								</div>
 							</div>
 							<div class="mb-3 row" th:if="*{usuario.fechaRegistro != null}">
-								<label class="col-sm-3 col-form-label" for="fechaRegistro">Fecha
+								<label class="col-sm-3 col-form-label fw-bold" for="fechaRegistro">Fecha
 									de Registro</label>
 								<div class="col-sm-9">
 									<input type="text" th:field="*{usuario.fechaRegistro}"
@@ -124,13 +124,13 @@
 								</div>
 							</div>
 							<div class="mb-3 row">
-								<label class="col-sm-3 col-form-label" for="foto">Foto</label>
+								<label class="col-sm-3 col-form-label fw-bold" for="foto">Foto</label>
 								<div class="col-sm-9">
 									<input type="file" name="file" id="foto" class="form-control">
 								</div>
 							</div>
 							<div class="mb-3 row" th:if="*{usuario.estaActivo != null}">
-								<label class="col-sm-3 col-form-label" for="estaActivo">Activo</label>
+								<label class="col-sm-3 col-form-label fw-bold" for="estaActivo">Activo</label>
 								<div class="col-sm-9">
 									<input type="checkbox" th:field="*{usuario.estaActivo}"
 										id="estaActivo">
@@ -138,14 +138,14 @@
 							</div>
 
 							<div class="mb-3 row" th:if="*{disponible != null}">
-								<label class="col-sm-3 col-form-label" for="disponible">Disponible</label>
+								<label class="col-sm-3 col-form-label fw-bold" for="disponible">Disponible</label>
 								<div class="col-sm-9">
 									<input type="checkbox" th:field="*{disponible}" id="disponible">
 								</div>
 							</div>
 
 							<div class="mb-3 row">
-								<label class="col-sm-3 col-form-label">Servicios</label>
+								<label class="col-sm-3 col-form-label fw-bold">Servicios</label>
 								<div class="col-sm-9">
 									<div th:each="servicio : ${servicios}">
 										<input th:value="${servicio.id}" th:field="*{servicios}"
@@ -155,7 +155,7 @@
 							</div>
 
 							<div class="mb-3 row">
-								<label class="col-sm-3 col-form-label">Distritos</label>
+								<label class="col-sm-3 col-form-label fw-bold">Distritos</label>
 								<div id="list" class="col-sm-9 dropdown-check-list"
 									tabindex="100">
 									<span class="anchor">Seleccionar distritos</span>
