@@ -45,6 +45,14 @@
 							<div class="col-sm-6 text-secondary"
 								th:text="${'S/. ' + mensaje.costo}"></div>
 						</div>
+						
+						<div class="row mb-3">
+							<div class="col-sm-6">
+								<h6>Tiempo Estimado</h6>
+							</div>
+							<div class="col-sm-6 text-secondary"
+								th:text="${mensaje.tiempoEstimado + ' días'}"></div>
+						</div>
 
 						<div class="row mb-3">
 							<div class="col-sm-6">

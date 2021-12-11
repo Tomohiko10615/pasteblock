@@ -75,22 +75,30 @@
 								id="costo" class="form-control">
 						</div>
 					</div>
-
+					
 					<div class="mb-3 row">
-						<label class="col-sm-3 col-form-label fw-bold">Comentario del
-							blocker</label>
+						<label class="col-sm-3 col-form-label fw-bold">Tiempo estimado</label>
 						<div class="col-sm-9">
-							<textarea rows="5" cols="60" th:field="*{comentarioBlocker}"
-								id="comentarioBlocker" class="form-control"></textarea>
+							<input type="number" th:field="*{tiempoEstimado}"
+								id="tiempoEstimado" class="form-control">
 						</div>
 					</div>
 
 					<div class="mb-3 row">
-						<label class="col-sm-3 col-form-label fw-bold">Comentario del
+						<label class="col-sm-3 col-form-label fw-bold">Mensaje del
+							blocker</label>
+						<div class="col-sm-9">
+							<textarea rows="5" cols="60" th:field="*{mensajeBlocker}"
+								id="mensajeBlocker" class="form-control"></textarea>
+						</div>
+					</div>
+
+					<div class="mb-3 row">
+						<label class="col-sm-3 col-form-label fw-bold">Mensaje del
 							cliente</label>
 						<div class="col-sm-9">
-							<textarea rows="5" cols="60" th:field="*{comentarioCliente}"
-								id="comentarioCliente" class="form-control"></textarea>
+							<textarea rows="5" cols="60" th:field="*{mensajeCliente}"
+								id="mensajeCliente" class="form-control"></textarea>
 						</div>
 					</div>
 				
