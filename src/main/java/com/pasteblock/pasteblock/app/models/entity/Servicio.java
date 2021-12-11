@@ -41,6 +41,9 @@ public class Servicio implements Serializable {
 
 	@OneToMany(mappedBy = "servicio", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Contrato> contratos;
+	
+	@OneToMany(mappedBy = "servicio", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Mensaje> mensajes;
 
 	private static final long serialVersionUID = 1L;
 

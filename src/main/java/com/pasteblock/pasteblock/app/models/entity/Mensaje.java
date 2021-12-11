@@ -25,22 +25,27 @@ public class Mensaje implements Serializable {
 	private Blocker blocker;
 
 	private Float costo;
-	private String servicio;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Servicio servicio;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Distrito distrito;
 
 	@Column(name = "tiempo_estimado")
 	private Integer tiempoEstimado;
 
-	@Column(name = "mensaje_blocker")
+	@Column(name = "mensaje_blocker", columnDefinition = "VARCHAR(1000)")
 	private String mensajeBlocker;
 
-	@Column(name = "mensaje_usuario")
-	private String mensajeUsuario;
+	@Column(name = "mensaje_cliente", columnDefinition = "VARCHAR(1000)")
+	private String mensajeCliente;
 
 	@Column(name = "estado_confirmacion_blocker")
 	private Boolean estadoConfirmacionBlocker;
 
-	@Column(name = "estado_confirmacion_usuario")
-	private Boolean estadoConfirmacionUsuario;
+	@Column(name = "estado_confirmacion_cliente")
+	private Boolean estadoConfirmacionCliente;
 
 	private static final long serialVersionUID = 1L;
 
@@ -76,14 +81,6 @@ public class Mensaje implements Serializable {
 		this.costo = costo;
 	}
 
-	public String getServicio() {
-		return servicio;
-	}
-
-	public void setServicio(String servicio) {
-		this.servicio = servicio;
-	}
-
 	public Integer getTiempoEstimado() {
 		return tiempoEstimado;
 	}
@@ -100,12 +97,12 @@ public class Mensaje implements Serializable {
 		this.mensajeBlocker = mensajeBlocker;
 	}
 
-	public String getMensajeUsuario() {
-		return mensajeUsuario;
+	public String getMensajeCliente() {
+		return mensajeCliente;
 	}
 
-	public void setMensajeUsuario(String mensajeUsuario) {
-		this.mensajeUsuario = mensajeUsuario;
+	public void setMensajeUsuario(String mensajeCliente) {
+		this.mensajeCliente = mensajeCliente;
 	}
 
 	public Boolean getEstadoConfirmacionBlocker() {
@@ -116,12 +113,12 @@ public class Mensaje implements Serializable {
 		this.estadoConfirmacionBlocker = estadoConfirmacionBlocker;
 	}
 
-	public Boolean getEstadoConfirmacionUsuario() {
-		return estadoConfirmacionUsuario;
+	public Boolean getEstadoConfirmacionCliente() {
+		return estadoConfirmacionCliente;
 	}
 
-	public void setEstadoConfirmacionUsuario(Boolean estadoConfirmacionUsuario) {
-		this.estadoConfirmacionUsuario = estadoConfirmacionUsuario;
+	public void setEstadoConfirmacionUsuario(Boolean estadoConfirmacionCliente) {
+		this.estadoConfirmacionCliente = estadoConfirmacionCliente;
 	}
 
 	public Cliente getCliente() {
@@ -138,6 +135,22 @@ public class Mensaje implements Serializable {
 
 	public void setBlocker(Blocker blocker) {
 		this.blocker = blocker;
+	}
+
+	public Servicio getServicio() {
+		return servicio;
+	}
+
+	public void setServicio(Servicio servicio) {
+		this.servicio = servicio;
+	}
+	
+	public Distrito getDistrito() {
+		return distrito;
+	}
+
+	public void setDistrito(Distrito distrito) {
+		this.distrito = distrito;
 	}
 
 	public static long getSerialversionuid() {

@@ -36,9 +36,6 @@ import com.pasteblock.pasteblock.app.util.paginator.PageRender;
 public class ContratoController {
 	
 	@Autowired
-	private IBlockerService blockerService;
-	
-	@Autowired
 	private IServicioService servicioService;
 	
 	@Autowired

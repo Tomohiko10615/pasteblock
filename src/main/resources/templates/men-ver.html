@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/base :: head"></head>
+<body>
+
+	<header th:replace="layout/base :: header"></header>
+
+	<div class="container py-4">
+
+		<div class="card bg-light">
+			<div class="card-header fw-bold" th:text="${accion}"></div>
+			<div class="card-body">
+				<div class="row">
+					<div class="col-sm-6 card-body">
+
+						<div class="row mb-3">
+							<div class="col-sm-6">
+								<h6>Blocker</h6>
+							</div>
+							<div class="col-sm-6 text-secondary"
+								th:text="${mensaje.blocker.usuario.nombre + ' ' + mensaje.blocker.usuario.apellido}"></div>
+						</div>
+
+						<div class="row mb-3">
+							<div class="col-sm-6">
+								<h6>Cliente</h6>
+							</div>
+							<div class="col-sm-6 text-secondary"
+								th:text="${mensaje.cliente.usuario.nombre + ' ' + mensaje.cliente.usuario.apellido}"></div>
+						</div>
+
+						<div class="row mb-3">
+							<div class="col-sm-6">
+								<h6>Distrito</h6>
+							</div>
+							<div class="col-sm-6 text-secondary"
+								th:text="${mensaje.distrito.nombre}"></div>
+						</div>
+
+						<div class="row mb-3">
+							<div class="col-sm-6">
+								<h6>Costo Estimado</h6>
+							</div>
+							<div class="col-sm-6 text-secondary"
+								th:text="${'S/. ' + mensaje.costo}"></div>
+						</div>
+
+						<div class="row mb-3">
+							<div class="col-sm-6">
+								<h6>Servicio</h6>
+							</div>
+							<div class="col-sm-6 text-secondary">
+								<div th:if="${mensaje.servicio.id} == 1"
+									style="display: inline-block;">
+									<img class="row img-thumbnail rounded mx-auto" width="120"
+										height="120" th:src="@{/uploads/albañileria.png}" /> <span
+										class="row badge bg-success rounded-pill w-100 mx-auto mt-2 p-2"
+										th:text="${mensaje.servicio.tipoServicio}"></span>
+								</div>
+								<div th:if="${mensaje.servicio.id} == 2"
+									style="display: inline-block;">
+									<img class="row img-thumbnail rounded mx-auto" width="120"
+										height="120" th:src="@{/uploads/pintura.png}" /> <span
+										class="row badge bg-danger rounded-pill w-100 mx-auto mt-2 p-2"
+										th:text="${mensaje.servicio.tipoServicio}"></span>
+								</div>
+								<div th:if="${mensaje.servicio.id} == 3"
+									style="display: inline-block;">
+									<img class="row img-thumbnail rounded mx-auto" width="120"
+										height="120" th:src="@{/uploads/electricidad.png}" /> <span
+										class="row badge bg-warning rounded-pill w-100 mx-auto mt-2 p-2"
+										th:text="${mensaje.servicio.tipoServicio}"></span>
+								</div>
+								<div th:if="${mensaje.servicio.id} == 4"
+									style="display: inline-block;">
+									<img class="row img-thumbnail rounded mx-auto" width="120"
+										height="120" th:src="@{/uploads/gasfiteria.png}" /> <span
+										class="row badge bg-dark rounded-pill w-100 mx-auto mt-2 p-2"
+										th:text="${mensaje.servicio.tipoServicio}"></span>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-sm-6 card-body">
+						<div class="row mb-3">
+							<div class="col-sm-3">
+								<h6>Mensaje del Blocker</h6>
+							</div>
+							<div class="col-sm-9 text-secondary"
+								th:text="${mensaje.mensajeBlocker}"></div>
+						</div>
+						<div class="row mb-3">
+							<div class="col-sm-3">
+								<h6>Mensaje del Cliente</h6>
+							</div>
+							<div class="col-sm-9 text-secondary"
+								th:text="${mensaje.mensajeCliente}"></div>
+						</div>
+
+					</div>
+				</div>
+				<a class="btn btn-outline-info btn-lg"
+					th:href="@{/mensajes/form/} + ${mensaje.id}">Editar mensaje</a>
+
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/base :: footer"></footer>
+</body>
+</html>

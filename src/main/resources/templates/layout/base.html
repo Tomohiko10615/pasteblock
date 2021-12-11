@@ -25,23 +25,34 @@
 						<li class="nav-item"><a
 							th:class="${#httpServletRequest.requestURI == '/'? 'nav-link active': 'nav-link'}"
 							class="nav-link" th:href="@{/}">Home</a></li>
-						<li class="nav-item"><a data-toggle="tab" role="tab" class="nav-link"
+						<li class="nav-item"><a data-toggle="tab" role="tab"
+							class="nav-link"
 							th:class="${#httpServletRequest.requestURI == '/clientes/listar'? 'nav-link active': 'nav-link'}"
 							th:href="@{/clientes/listar}">Clientes</a></li>
-						<li class="nav-item"><a data-toggle="tab" role="tab" class="nav-link"
+						<li class="nav-item"><a data-toggle="tab" role="tab"
+							class="nav-link"
 							th:class="${#httpServletRequest.requestURI == '/blockers/listar'? 'nav-link active': 'nav-link'}"
 							th:href="@{/blockers/listar}">Blockers</a></li>
-						<li class="nav-item"><a data-toggle="tab" role="tab" class="nav-link"
+						<li class="nav-item"><a data-toggle="tab" role="tab"
+							class="nav-link"
 							th:class="${#httpServletRequest.requestURI == '/contratos/listar'? 'nav-link active': 'nav-link'}"
 							th:href="@{/contratos/listar}">Contratos</a></li>
+						<li class="nav-item"><a data-toggle="tab" role="tab"
+							class="nav-link"
+							th:class="${#httpServletRequest.requestURI == '/mensajes/listar'? 'nav-link active': 'nav-link'}"
+							th:href="@{/mensajes/listar}">Mensajes</a></li>
 					</ul>
 				</div>
 			</div>
 		</nav>
-		<div class="alert alert-success" th:if="${success} != null" th:text="${success}"></div>
-		<div class="alert alert-danger" th:if="${danger} != null" th:text="${danger}"></div>
-		<div class="alert alert-warning" th:if="${warning} != null" th:text="${warning}"></div>
-		<div class="alert alert-info" th:if="${info} != null" th:text="${info}"></div>
+		<div class="alert alert-success" th:if="${success} != null"
+			th:text="${success}"></div>
+		<div class="alert alert-danger" th:if="${danger} != null"
+			th:text="${danger}"></div>
+		<div class="alert alert-warning" th:if="${warning} != null"
+			th:text="${warning}"></div>
+		<div class="alert alert-info" th:if="${info} != null"
+			th:text="${info}"></div>
 	</header>
 
 	<div class="container"></div>
