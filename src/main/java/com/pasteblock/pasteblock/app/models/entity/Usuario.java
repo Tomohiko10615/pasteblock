@@ -26,6 +26,8 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "usuarios")
 public class Usuario implements Serializable {
@@ -41,15 +43,17 @@ public class Usuario implements Serializable {
 	
 	@Email
 	@NotBlank
+	@Column(unique=true)
 	private String email;
 	
 	@NotBlank
-	@Size(min = 8, max = 15)
+	@Size(max = 60)
 	private String password;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="usuario_id")
-	private List<Rol> roles;
+	
+	private List<Role> roles;
 	
 	@NotBlank
 	private String celular;
@@ -117,11 +121,11 @@ public class Usuario implements Serializable {
 		this.password = password;
 	}
 
-	public List<Rol> getRoles() {
+	public List<Role> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(List<Rol> roles) {
+	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
 

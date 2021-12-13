@@ -10,14 +10,14 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "roles", uniqueConstraints = {@UniqueConstraint(columnNames = {"usuario_id", "rol"})})
-public class Rol implements Serializable {
+@Table(name = "authorities", uniqueConstraints = {@UniqueConstraint(columnNames = {"usuario_id", "authority"})})
+public class Role implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String rol;
+	private String authority;
 
 	public Long getId() {
 		return id;
@@ -27,12 +27,12 @@ public class Rol implements Serializable {
 		this.id = id;
 	}
 
-	public String getRol() {
-		return rol;
+	public String getAuthority() {
+		return authority;
 	}
 
-	public void setRol(String rol) {
-		this.rol = rol;
+	public void setAuthority(String authority) {
+		this.authority = authority;
 	}
 
 	private static final long serialVersionUID = 1L;

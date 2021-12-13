@@ -1,8 +1,8 @@
 /* Populate tables */
-INSERT INTO usuarios (id, nombre, apellido, email, password, celular, esta_activo, fecha_de_registro) VALUES(1, 'Andres', 'Guzman', 'profesor@bolsadeideas.com', 'pass1234', 934324234, TRUE, '2014-08-28');
+INSERT INTO usuarios (id, nombre, apellido, email, password, celular, esta_activo, fecha_de_registro) VALUES(1, 'Andres', 'Guzman', 'profesor@bolsadeideas.com', '$2a$10$F3CgQi7stcgGjNB9B7ntKOO3fDWomfXdOI/FVF7vsDcRZmQ7.fNn6', 934324234, TRUE, '2014-08-28');
 INSERT INTO clientes (id, usuario_id, reputacion, direccion, distrito, numero_servicios_contratados) VALUES(1, 1, 3, 'Av. Argentina 1515', 'Cercado de Lima', 7);
 
-INSERT INTO roles (id, rol, usuario_id) VALUES(1, "Cliente", 1);
+INSERT INTO authorities (id, authority, usuario_id) VALUES(1, 'Cliente', 1);
 
 INSERT INTO usuarios (id, nombre, apellido, email, password, celular, esta_activo, fecha_de_registro) VALUES(2, 'Mylee', 'Fenton', 'mfenton@bolsadeideas.com', 'pass1234', 934554234, TRUE, '2018-01-18');
 INSERT INTO clientes (id, usuario_id, reputacion, direccion, distrito, numero_servicios_contratados) VALUES(2, 2, 4, 'Av. San Hilarion Este Mz. E1 Lt. 1', 'San Juan de Lurigancho', 15);
@@ -148,3 +148,7 @@ INSERT INTO mensajes (id, servicio_id, cliente_id, blocker_id, distrito_id, cost
 INSERT INTO mensajes (id, servicio_id, cliente_id, blocker_id, distrito_id, costo, tiempo_estimado, estado_confirmacion_blocker, estado_confirmacion_cliente, mensaje_blocker, mensaje_cliente) VALUES(3, 1, 1, 1, 43, 100.00, 4, TRUE, NULL, 'No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful.', '"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.');
 INSERT INTO mensajes (id, servicio_id, cliente_id, blocker_id, distrito_id, costo, tiempo_estimado, estado_confirmacion_blocker, estado_confirmacion_cliente, mensaje_blocker, mensaje_cliente) VALUES(4, 4, 5, 3, 3, NULL, NULL, FALSE, NULL, NULL, '"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.');
 INSERT INTO mensajes (id, servicio_id, cliente_id, blocker_id, distrito_id, costo, tiempo_estimado, estado_confirmacion_blocker, estado_confirmacion_cliente, mensaje_blocker, mensaje_cliente) VALUES(5, 4, 8, 4, 17, 220.00, 2, TRUE, TRUE, 'No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful.', '"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.');
+
+INSERT INTO usuarios (id, nombre, apellido, email, password, celular, esta_activo, fecha_de_registro) VALUES(20, 'Richard', 'Inafuko', 'richard.inafuko@unmsm.edu.pe', '$2a$10$Uf2nInYbjlYFu1dkHqGeY.CR/n.5pdEyW0075DHY.8Do3X3YOwt7K', 938732234, TRUE, '2017-12-28');
+
+INSERT INTO authorities (id, authority, usuario_id) VALUES(2, 'Admin', 20);

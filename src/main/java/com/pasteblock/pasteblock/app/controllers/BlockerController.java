@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pasteblock.pasteblock.app.models.entity.Blocker;
 import com.pasteblock.pasteblock.app.models.entity.Distrito;
-import com.pasteblock.pasteblock.app.models.entity.Rol;
+import com.pasteblock.pasteblock.app.models.entity.Role;
 import com.pasteblock.pasteblock.app.models.entity.Servicio;
 import com.pasteblock.pasteblock.app.models.entity.Usuario;
 import com.pasteblock.pasteblock.app.models.services.IBlockerService;
@@ -44,6 +45,9 @@ public class BlockerController {
 	
 	@Autowired
 	private IDistritoService distritoService;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	@GetMapping("/listar")
 	public String listar(@RequestParam(name="page", defaultValue="0") int page, Model model) {
@@ -71,13 +75,7 @@ public class BlockerController {
 		Blocker blocker = new Blocker();
 		List<Servicio> servicios = servicioService.findAll();
 		List<Distrito> distritos = distritoService.findAll();
-		//Usuario usuario = new Usuario();
-		//blocker.setUsuario(usuario);
-		//List<Rol> roles = new ArrayList<Rol>();
-		//blocker.getUsuario().setRoles(roles);
-		//Rol rol = new Rol();
-		//rol.setRol("Blocker");
-		//blocker.getUsuario().getRoles().add(rol);
+
 		model.put("blocker", blocker);
 		model.put("servicios", servicios);
 		model.put("distritos", distritos);
@@ -101,15 +99,16 @@ public class BlockerController {
 			}
 		}
 		
-		
-		
 		if (blocker.getId() == null) {
-			List<Rol> roles = new ArrayList<Rol>();
+			List<Role> roles = new ArrayList<Role>();
 			blocker.getUsuario().setRoles(roles);
-			Rol rol = new Rol();
-			rol.setRol("Blocker");
+			Role rol = new Role();
+			rol.setAuthority("Blocker");
 			blocker.getUsuario().getRoles().add(rol);
 			blocker.getUsuario().setTiempoRegistrado();
+			
+			blocker.getUsuario().setPassword(passwordEncoder.encode(blocker.getUsuario().getPassword()));
+			
 			blockerService.save(blocker);
 			flash.addFlashAttribute("success", "Blocker creado con éxito");
 		}
