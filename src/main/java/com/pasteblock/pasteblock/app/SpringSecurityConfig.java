@@ -1,6 +1,7 @@
 package com.pasteblock.pasteblock.app;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,7 +12,7 @@ import com.pasteblock.pasteblock.app.models.services.JpaUserDetailsService;
 
 @Configuration
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
-
+	
 	@Autowired
 	private BCryptPasswordEncoder encoder;
 	
