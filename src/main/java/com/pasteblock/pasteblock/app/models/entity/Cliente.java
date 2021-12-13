@@ -16,9 +16,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
 @Table(name = "clientes")
 public class Cliente implements Serializable {
@@ -28,7 +25,6 @@ public class Cliente implements Serializable {
 	private Long id;
 
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JsonIgnoreProperties(value={"cliente", "hibernateLazyInitializer", "handler"})
 	private Usuario usuario;
 	
 	private Float reputacion;
@@ -36,7 +32,6 @@ public class Cliente implements Serializable {
 	private String distrito;
 
 	@OneToMany(mappedBy="cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JsonManagedReference
 	private List<Mensaje> mensajes;
 	
 	@OneToMany(mappedBy="cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

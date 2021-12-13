@@ -17,9 +17,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
 @Table(name = "blockers")
 public class Blocker implements Serializable {

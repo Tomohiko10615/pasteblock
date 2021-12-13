@@ -31,7 +31,6 @@ import com.pasteblock.pasteblock.app.models.services.IClienteService;
 import com.pasteblock.pasteblock.app.util.paginator.PageRender;
 
 @RestController
-@CrossOrigin(origins = {})
 @RequestMapping("/api/clientes")
 public class ClientesRestController {
 	
@@ -68,7 +67,6 @@ public class ClientesRestController {
 			cliente.getUsuario().setTiempoRegistrado();
 			
 			cliente.getUsuario().setPassword(passwordEncoder.encode(cliente.getUsuario().getPassword()));
-			
 			return clienteService.save(cliente);
 		}
 		else {
