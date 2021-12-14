@@ -1,9 +1,5 @@
 package com.pasteblock.pasteblock.app.controllers;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
@@ -18,14 +14,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.pasteblock.pasteblock.app.models.entity.Blocker;
 import com.pasteblock.pasteblock.app.models.entity.Contrato;
 import com.pasteblock.pasteblock.app.models.entity.Distrito;
 import com.pasteblock.pasteblock.app.models.entity.Servicio;
-import com.pasteblock.pasteblock.app.models.services.IBlockerService;
 import com.pasteblock.pasteblock.app.models.services.IContratoService;
 import com.pasteblock.pasteblock.app.models.services.IDistritoService;
 import com.pasteblock.pasteblock.app.models.services.IServicioService;
@@ -51,6 +44,7 @@ public class ContratoController {
 		
 		Page<Contrato> contratos = contratoService.findAll(pageRequest);
 		
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		PageRender<Contrato> pageRender = new PageRender("/contratos/listar", contratos);
 		
 		model.addAttribute("accion", "Listado de contratos");

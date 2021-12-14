@@ -19,4 +19,6 @@ public interface IBlockerService {
 	
 	public void delete(Long id);
 	
+	public List<Blocker> fetchByIdWithServicioWithDistrito(Long servicio_id, Long distrito_id);
+	
 }

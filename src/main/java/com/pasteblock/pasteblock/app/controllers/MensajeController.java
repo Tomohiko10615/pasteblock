@@ -34,6 +34,7 @@ public class MensajeController {
 		
 		Page<Mensaje> mensajes = mensajeService.findAll(pageRequest);
 		
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		PageRender<Contrato> pageRender = new PageRender("/mensajes/listar", mensajes);
 		
 		model.addAttribute("accion", "Mensajes");

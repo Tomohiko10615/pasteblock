@@ -32,7 +32,7 @@ public class Contrato implements Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Blocker blocker;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Distrito distrito;
 

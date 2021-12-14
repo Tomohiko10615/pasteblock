@@ -47,4 +47,12 @@ public class BlockerServiceImpl implements IBlockerService {
 		return blockerDao.findAll(pageable);
 	}
 
+	@Transactional(readOnly=true)
+	@Override
+	public List<Blocker> fetchByIdWithServicioWithDistrito(Long servicio_id, Long distrito_id) {
+		return blockerDao.fecthByIdWithServicioWithDistrito(servicio_id, distrito_id);
+	}
+	
+	
+
 }

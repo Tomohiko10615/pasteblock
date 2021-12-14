@@ -27,7 +27,6 @@ import com.pasteblock.pasteblock.app.models.entity.Blocker;
 import com.pasteblock.pasteblock.app.models.entity.Distrito;
 import com.pasteblock.pasteblock.app.models.entity.Role;
 import com.pasteblock.pasteblock.app.models.entity.Servicio;
-import com.pasteblock.pasteblock.app.models.entity.Usuario;
 import com.pasteblock.pasteblock.app.models.services.IBlockerService;
 import com.pasteblock.pasteblock.app.models.services.IDistritoService;
 import com.pasteblock.pasteblock.app.models.services.IServicioService;
@@ -61,6 +60,7 @@ public class BlockerController {
             blockerService.save(blockers.getContent().get(i));
         }
 		
+		@SuppressWarnings({ "unchecked", "rawtypes" })
 		PageRender<Blocker> pageRender = new PageRender("/blockers/listar", blockers);
 		
 		model.addAttribute("accion", "Listado de blockers");

@@ -45,6 +45,7 @@ public class ClienteController {
             clienteService.save(clientes.getContent().get(i));
         }
 		
+		@SuppressWarnings({ "unchecked", "rawtypes" })
 		PageRender<Cliente> pageRender = new PageRender("/clientes/listar", clientes);
 		
 		model.addAttribute("accion", "Listado de clientes");
@@ -84,7 +85,7 @@ public class ClienteController {
 			clienteActualizado.getUsuario().setEmail(cliente.getUsuario().getEmail());
 			clienteActualizado.getUsuario().setCelular(cliente.getUsuario().getCelular());
 			clienteActualizado.setDireccion(cliente.getDireccion());
-			clienteActualizado.setDistrito(cliente.getDistrito());
+			clienteActualizado.setDistritoId(cliente.getDistritoId());
 			clienteActualizado.getUsuario().setFechaRegistro(cliente.getUsuario().getFechaRegistro());
 			clienteActualizado.getUsuario().setEstaActivo(cliente.getUsuario().getEstaActivo());
 			clienteService.save(clienteActualizado);

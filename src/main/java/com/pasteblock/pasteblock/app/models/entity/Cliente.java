@@ -29,11 +29,11 @@ public class Cliente implements Serializable {
 	
 	private Float reputacion;
 	private String direccion;
-	private String distrito;
+	private Long distritoId;
 
 	@OneToMany(mappedBy="cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Mensaje> mensajes;
-	
+
 	@OneToMany(mappedBy="cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Contrato> contratos;
 	
@@ -84,14 +84,6 @@ public class Cliente implements Serializable {
 		this.direccion = direccion;
 	}
 
-	public String getDistrito() {
-		return distrito;
-	}
-
-	public void setDistrito(String distrito) {
-		this.distrito = distrito;
-	}
-
 	public List<Mensaje> getMensajes() {
 		return mensajes;
 	}
@@ -119,5 +111,16 @@ public class Cliente implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public Long getDistritoId() {
+		return distritoId;
+	}
+
+	public void setDistritoId(Long distritoId) {
+		this.distritoId = distritoId;
+	}
+
+	
+	
 
 }
