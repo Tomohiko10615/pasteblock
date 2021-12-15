@@ -205,8 +205,8 @@ public class ApiRestController {
 		String email = auth.getName();
 		Usuario usuarioAuth = usuarioDao.findByEmail(email);
 
-		mensaje.setBlockerId(blockerService.findOne(blockerId));
-		mensaje.setClienteId(usuarioAuth.getCliente());
+		mensaje.setBlocker(blockerService.findOne(blockerId));
+		mensaje.setCliente(usuarioAuth.getCliente());
 		
 		mensajeService.save(mensaje);
 
