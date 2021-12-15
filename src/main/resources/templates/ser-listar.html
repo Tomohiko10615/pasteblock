@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/base :: head"></head>
+
+<body>
+
+	<header th:replace="layout/base :: header"></header>
+
+	<div class="container py-4">
+
+		<div class="card bg-light">
+			<div class="card-header fw-bold" th:text="${accion}"></div>
+			<div class="card-body">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Servicio</th>
+							<th>Min</th>
+							<th>Max</th>
+							<th>Editar</th>
+							<th>Eliminar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="servicio: ${servicios}">
+							<td th:text="${servicio.id}"></td>
+							<td th:text="${servicio.tipoServicio}"></td>
+							
+								<td th:text="${servicio.costoEstimadoMinimo}"></td>
+								<td th:text="${servicio.costoEstimadoMaximo}"></td>
+								<td><a class="btn btn-outline-info btn-sm"
+									th:href="@{/servicios/form/} + ${servicio.id}">Editar</a></td>
+							</form>
+							<td><button class="btn btn-outline-danger btn-sm"
+									th:id="${servicio.id}" onclick="confirm(id)">Eliminar</button></td>
+						</tr>
+					
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/base :: footer"></footer>
+
+	<script th:inline="javascript">
+	function confirm(id) {
+		Swal.fire({
+			  title: '¿Estás seguro?',
+			  text: '¡No serás capaz de revertirlo!',
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '¡Sí, eliminarlo!'
+			}).then((result) => {
+			  if (result.isConfirmed) {
+				  Swal.fire(
+			      '¡Eliminado!',
+			      'El servicio ha sido eliminado.',
+			      'success'
+			    ).then((result) => {
+			    	var url = /*[[@{/servicios/eliminar/}]]*/ 
+					window.location.href = url + id;
+			    })
+			  }
+			})
+	}
+			
+			    
+</script>
+</body>
+</html>

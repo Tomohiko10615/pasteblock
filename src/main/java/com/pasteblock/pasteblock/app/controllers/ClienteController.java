@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pasteblock.pasteblock.app.models.entity.Cliente;
+import com.pasteblock.pasteblock.app.models.entity.Distrito;
 import com.pasteblock.pasteblock.app.models.entity.Role;
 import com.pasteblock.pasteblock.app.models.services.IClienteService;
+import com.pasteblock.pasteblock.app.models.services.IDistritoService;
 import com.pasteblock.pasteblock.app.util.paginator.PageRender;
 
 @Controller
@@ -29,6 +31,9 @@ public class ClienteController {
 	
 	@Autowired
 	private IClienteService clienteService;
+	
+	@Autowired
+	private IDistritoService distritoService;
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -58,7 +63,9 @@ public class ClienteController {
 	@GetMapping("/form")
 	public String crear(Map<String, Object> model) {
 		Cliente cliente = new Cliente();
+		List<Distrito> distritos = distritoService.findAll();
 		model.put("cliente", cliente);
+		model.put("distritos", distritos);
 		model.put("accion", "Crear cliente");
 		return "crear";
 	}
@@ -106,6 +113,8 @@ public class ClienteController {
 			return "redirect:listar";
 		}
 		
+		List<Distrito> distritos = distritoService.findAll();
+		model.put("distritos", distritos);
 		model.put("cliente", cliente);
 		model.put("accion", "Editar cliente");
 		return "crear";

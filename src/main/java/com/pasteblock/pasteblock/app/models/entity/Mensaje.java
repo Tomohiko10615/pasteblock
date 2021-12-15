@@ -57,22 +57,6 @@ public class Mensaje implements Serializable {
 		this.id = id;
 	}
 
-	public Cliente getClienteId() {
-		return cliente;
-	}
-
-	public void setClienteId(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
-	public Blocker getBlockerId() {
-		return blocker;
-	}
-
-	public void setBlockerId(Blocker blocker) {
-		this.blocker = blocker;
-	}
-
 	public Float getCosto() {
 		return costo;
 	}

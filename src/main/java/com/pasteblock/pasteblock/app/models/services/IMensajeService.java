@@ -18,4 +18,6 @@ public interface IMensajeService {
 	public Mensaje save(Mensaje mensaje);
 	
 	public void delete(Long id);
+	
+	public List<Mensaje> fecthByClienteId(Long clienteId);
 }

@@ -46,5 +46,9 @@ public class MensajeServiceImpl implements IMensajeService {
 	public Page<Mensaje> findAll(Pageable pageable) {
 		return mensajeDao.findAll(pageable);
 	}
+	
+	public List<Mensaje> fecthByClienteId(Long clienteId) {
+		return mensajeDao.fecthByClienteId(clienteId);
+	}
 
 }
