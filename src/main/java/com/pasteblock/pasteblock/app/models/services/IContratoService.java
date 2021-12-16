@@ -18,4 +18,6 @@ public interface IContratoService {
 	public Contrato save(Contrato contrato);
 	
 	public void delete(Long id);
+	
+	public List<Contrato> fetchByClienteId(Long clienteId, Boolean finalizado, Integer inicio, Integer total);
 }

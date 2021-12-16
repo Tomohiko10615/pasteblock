@@ -46,5 +46,9 @@ public class ContratoServiceImpl implements IContratoService {
 	public Page<Contrato> findAll(Pageable pageable) {
 		return contratoDao.findAll(pageable);
 	}
+	
+	public List<Contrato> fetchByClienteId(Long clienteId, Boolean finalizado, Integer inicio, Integer total) {
+		return contratoDao.fetchByClienteId(clienteId, finalizado, inicio, total);
+	}
 
 }

@@ -8,6 +8,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import com.pasteblock.pasteblock.app.models.entity.Mensaje;
 
 public interface IMensajeDao extends PagingAndSortingRepository<Mensaje, Long> {
-	@Query(value="SELECT * FROM mensajes WHERE cliente_id = ?1 ORDER BY id DESC", nativeQuery = true)
-	public List<Mensaje> fecthByClienteId(Long clienteId);
+	@Query(value="SELECT * FROM mensajes WHERE cliente_id = ?1 ORDER BY id DESC LIMIT ?2, ?3", nativeQuery = true)
+	public List<Mensaje> fecthByClienteId(Long clienteId, Integer inicio, Integer total);
 }

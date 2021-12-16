@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pasteblock.pasteblock.app.models.dao.IUsuarioDao;
 import com.pasteblock.pasteblock.app.models.entity.Blocker;
 import com.pasteblock.pasteblock.app.models.entity.Cliente;
+import com.pasteblock.pasteblock.app.models.entity.Contrato;
 import com.pasteblock.pasteblock.app.models.entity.Distrito;
 import com.pasteblock.pasteblock.app.models.entity.Mensaje;
 import com.pasteblock.pasteblock.app.models.entity.Role;
@@ -29,6 +30,7 @@ import com.pasteblock.pasteblock.app.models.entity.Servicio;
 import com.pasteblock.pasteblock.app.models.entity.Usuario;
 import com.pasteblock.pasteblock.app.models.services.IBlockerService;
 import com.pasteblock.pasteblock.app.models.services.IClienteService;
+import com.pasteblock.pasteblock.app.models.services.IContratoService;
 import com.pasteblock.pasteblock.app.models.services.IMensajeService;
 import com.pasteblock.pasteblock.app.models.services.IServicioService;
 
@@ -47,6 +49,9 @@ public class ApiRestController {
 	
 	@Autowired
 	private IServicioService servicioService;
+	
+	@Autowired
+	private IContratoService contratoService;
 
 	@Autowired
 	private IUsuarioDao usuarioDao;
@@ -63,13 +68,16 @@ public class ApiRestController {
 			}
 
 			if (usuarioAuth.getBlocker() != null) {
+				
 				usuarioAuth.getBlocker().setUsuario(null);
 				usuarioAuth.getBlocker().setMensajes(null);
 				usuarioAuth.getBlocker().setContratos(null);
+				
 				for (Servicio s : usuarioAuth.getBlocker().getServicios()) {
 					s.setBlockers(null);
 					s.setContratos(null);
 				}
+				
 				for (Distrito d : usuarioAuth.getBlocker().getDistritos()) {
 					d.setBlockers(null);
 				}
@@ -109,6 +117,21 @@ public class ApiRestController {
 			mensaje.getServicio().setContratos(null);
 			mensaje.getDistrito().setBlockers(null);
 		}
+		
+		public static void setNullFields(Contrato contrato) {
+			
+			contrato.getCliente().setMensajes(null);
+			contrato.getCliente().getUsuario().setCliente(null);
+			contrato.getCliente().setContratos(null);
+			contrato.getBlocker().getUsuario().setBlocker(null);
+			contrato.getBlocker().setMensajes(null);
+			contrato.getBlocker().setServicios(null);
+			contrato.getBlocker().setContratos(null);
+			contrato.getBlocker().setDistritos(null);
+			contrato.getServicio().setBlockers(null);
+			contrato.getServicio().setContratos(null);
+			contrato.getDistrito().setBlockers(null);
+		}
 	}
 
 	@GetMapping("/usuario")
@@ -136,10 +159,11 @@ public class ApiRestController {
 	@GetMapping("/listar/{servicioId}/{distritoId}")
 	public List<Blocker> blockers(@PathVariable(value = "servicioId") Long servicioId,
 			@PathVariable(value = "distritoId") Long distritoId, @RequestParam(value = "criterio") String criterio,
-			@RequestParam(value = "orden") Integer orden, @RequestParam(value = "max") Integer max) {
+			@RequestParam(value = "orden") Integer orden, @RequestParam(value = "inicio") Integer inicio,
+			@RequestParam(value = "total") Integer total) {
 
 		List<Blocker> blockers = blockerService.fetchByIdWithServicioWithDistrito(servicioId, distritoId, criterio,
-				orden, max);
+				orden, inicio, total);
 
 		for (Blocker b : blockers) {
 			Main.setNullFields(b);
@@ -148,7 +172,7 @@ public class ApiRestController {
 		return blockers;
 	}
 
-	@PostMapping("/clientes/form")
+	@PostMapping("/cliente/form")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Cliente guardar(@RequestBody @Valid Cliente cliente) {
 		if (cliente.getId() == null) {
@@ -177,9 +201,6 @@ public class ApiRestController {
 		List<Object> contacto = new ArrayList<Object>();
 
 		Mensaje mensaje = new Mensaje();
-		mensaje.setServicio(servicioService.findOne(servicioId));
-		mensaje.getServicio().setBlockers(null);
-		mensaje.getServicio().setContratos(null);
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String email = auth.getName();
@@ -199,34 +220,118 @@ public class ApiRestController {
 	}
 
 	@PostMapping("/contacto/{servicioId}/{blockerId}")
-	public Mensaje contacto(@PathVariable(value = "blockerId") Long blockerId, Mensaje mensaje) {
+	@ResponseStatus(HttpStatus.CREATED)
+	public Mensaje contacto(@PathVariable(value = "blockerId") Long blockerId,
+			@PathVariable(value = "servicioId") Long servicioId,
+			@RequestParam(value = "estado", defaultValue="null") Boolean estado,
+			@RequestBody @Valid Mensaje mensaje) {
 
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String email = auth.getName();
-		Usuario usuarioAuth = usuarioDao.findByEmail(email);
+		if (mensaje.getId() == null) {
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			String email = auth.getName();
+			Usuario usuarioAuth = usuarioDao.findByEmail(email);
 
-		mensaje.setBlocker(blockerService.findOne(blockerId));
-		mensaje.setCliente(usuarioAuth.getCliente());
+			mensaje.setBlocker(blockerService.findOne(blockerId));
+			mensaje.setCliente(usuarioAuth.getCliente());
+			mensaje.setServicio(servicioService.findOne(servicioId));
+		}
 		
-		mensajeService.save(mensaje);
-
-		return mensaje;
+		mensaje.setEstadoConfirmacionCliente(estado);
+		
+		return mensajeService.save(mensaje);
+		
 	}
 	
-	@GetMapping("/inbox")
-	public List<Mensaje> inbox() {
+	@GetMapping("cliente/inbox")
+	public List<Mensaje> inbox(@RequestParam(name="inicio", defaultValue="0") Integer inicio,
+			@RequestParam(name="total", defaultValue="3") Integer total) {
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String email = auth.getName();
 		Usuario usuarioAuth = usuarioDao.findByEmail(email);
 		
-		List<Mensaje> mensajes = mensajeService.fecthByClienteId(usuarioAuth.getCliente().getId());
+		List<Mensaje> mensajes = mensajeService.fecthByClienteId(usuarioAuth.getCliente().getId(), inicio, total);
 		
 		for (Mensaje m : mensajes) {
 			Main.setNullFields(m);
 		}
 
 		return mensajes;
+	}
+	
+	@GetMapping("/contrato")
+	public Contrato contratar() {
+		
+		Contrato contrato = new Contrato();
+
+		return contrato;
+	}
+	
+	@PostMapping("/contrato/{servicioId}/{blockerId}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public Contrato contratar(@PathVariable(value = "blockerId") Long blockerId,
+			@PathVariable(value = "servicioId") Long servicioId,
+			@RequestParam(value = "estado", defaultValue="null") Boolean estado,
+			@RequestBody @Valid Contrato contrato) {
+		
+		Blocker blocker = blockerService.findOne(blockerId);
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String email = auth.getName();
+		Usuario usuarioAuth = usuarioDao.findByEmail(email);
+		
+		if (contrato.getId() == null) {
+			
+			contrato.setBlocker(blocker);
+			contrato.setCliente(usuarioAuth.getCliente());
+			contrato.setServicio(servicioService.findOne(servicioId));
+			
+			blocker.setTrabajosEnProceso(blocker.getTrabajosEnProceso() + 1);
+			
+			blockerService.save(blocker);
+			
+		}
+		
+		contrato.setConfirmacionCliente(estado);
+		
+		if (estado != null) {
+			
+			contrato.setHaFinalizado(true);
+			blocker.setNumeroCalificaciones(blocker.getNumeroCalificaciones() + 1);
+			
+			if (blocker.getReputacion() != null)
+				blocker.setReputacion((contrato.getCalificacionBlocker() * (blocker.getNumeroCalificaciones() - 1) + blocker.getReputacion()) / blocker.getNumeroCalificaciones());
+			else
+				blocker.setReputacion(contrato.getCalificacionBlocker().floatValue());
+			
+			if (estado) {
+				blocker.setNumeroTrabajosCulminados(blocker.getNumeroTrabajosCulminados() + 1);
+				blockerService.save(blocker);
+				usuarioAuth.getCliente().setNumeroServiciosContratados(usuarioAuth.getCliente().getNumeroServiciosContratados() + 1);
+				clienteService.save(usuarioAuth.getCliente());
+			}	
+		}
+
+		return contratoService.save(contrato);
+	
+	}
+	
+	@GetMapping("cliente/historial")
+	public List<Contrato> historial(@RequestParam(name="finalizado", defaultValue="false") Boolean finalizado,
+			@RequestParam(name="inicio", defaultValue="0") Integer inicio,
+			@RequestParam(name="total", defaultValue="5") Integer total) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String email = auth.getName();
+		Usuario usuarioAuth = usuarioDao.findByEmail(email);
+		
+		List<Contrato> contratos = contratoService.fetchByClienteId(usuarioAuth.getCliente().getId(), finalizado, inicio, total);
+		
+		for (Contrato c : contratos) {
+			Main.setNullFields(c);
+		}
+		
+		return contratos;
+		
 	}
 
 }

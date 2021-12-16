@@ -14,8 +14,12 @@ public interface IBlockerDao extends PagingAndSortingRepository<Blocker, Long> {
 			+ "AND disponible = TRUE "
 			+ "AND usuario_id IN (SELECT usuario_id FROM usuarios WHERE esta_activo = TRUE) "
 			+ "ORDER BY"
-			+ "(CASE WHEN ?4 = 0 AND ?3 = 'reputacion' THEN reputacion WHEN ?4 = 0 AND ?3 = 'numero_trabajos_culminados' THEN numero_trabajos_culminados WHEN ?4 = 0 AND ?3 = 'fecha_de_registro' THEN fecha_de_registro END) ASC,"
-			+ "(CASE WHEN ?4 = 1 AND ?3 = 'reputacion' THEN reputacion WHEN ?4 = 1 AND ?3 = 'numero_trabajos_culminados' THEN numero_trabajos_culminados WHEN ?4 = 1 AND ?3 = 'fecha_de_registro' THEN fecha_de_registro END) DESC "
-			+ "LIMIT ?5", nativeQuery = true)
-	public List<Blocker> fecthByIdWithServicioWithDistrito(Long servicioId, Long distritoId, String criterio, Integer orden, Integer max);
+			+ "(CASE WHEN ?4 = 0 AND ?3 = 'culminados' THEN numero_trabajos_culminados END) ASC,"
+            + "(CASE WHEN ?4 = 0 AND ?3 = 'fecha' THEN fecha_de_registro END) ASC,"
+            + "(CASE WHEN ?4 = 0 AND ?3 = 'reputacion' THEN reputacion END) ASC,"
+			+ "(CASE WHEN ?4 = 1 AND ?3 = 'culminados' THEN numero_trabajos_culminados END) DESC,"
+            + "(CASE WHEN ?4 = 1 AND ?3 = 'fecha' THEN fecha_de_registro END) DESC,"
+            + "(CASE WHEN ?4 = 1 AND ?3 = 'reputacion' THEN reputacion END) DESC "
+            + "LIMIT ?5, ?6", nativeQuery = true)
+	public List<Blocker> fetchByIdWithServicioWithDistrito(Long servicioId, Long distritoId, String criterio, Integer orden, Integer inicio, Integer total);
 }

@@ -19,6 +19,6 @@ public interface IBlockerService {
 	
 	public void delete(Long id);
 	
-	public List<Blocker> fetchByIdWithServicioWithDistrito(Long servicioId, Long distritoId, String criterio, Integer orden, Integer max);
+	public List<Blocker> fetchByIdWithServicioWithDistrito(Long servicioId, Long distritoId, String criterio, Integer orden, Integer inicio, Integer total);
 	
 }

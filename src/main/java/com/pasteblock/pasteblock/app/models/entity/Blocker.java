@@ -32,12 +32,14 @@ public class Blocker implements Serializable {
 	private String presentacion;
 	
 	private Float reputacion;
+	private Integer numeroCalificaciones;
 	private String foto;
 	private Boolean disponible;
 	
 	@PrePersist
 	public void prePersist() {
 		disponible = true;
+		numeroCalificaciones = 0;
 	}
 	
 	@OneToMany(mappedBy="blocker", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -175,6 +177,14 @@ public class Blocker implements Serializable {
 
 	public void setPresentacion(String presentacion) {
 		this.presentacion = presentacion;
+	}
+
+	public Integer getNumeroCalificaciones() {
+		return numeroCalificaciones;
+	}
+
+	public void setNumeroCalificaciones(Integer numeroCalificaciones) {
+		this.numeroCalificaciones = numeroCalificaciones;
 	}
 
 	public static long getSerialversionuid() {

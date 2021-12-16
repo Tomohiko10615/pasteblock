@@ -19,5 +19,5 @@ public interface IMensajeService {
 	
 	public void delete(Long id);
 	
-	public List<Mensaje> fecthByClienteId(Long clienteId);
+	public List<Mensaje> fecthByClienteId(Long clienteId, Integer inicio, Integer total);
 }

@@ -101,7 +101,7 @@ public class Mensaje implements Serializable {
 		return estadoConfirmacionCliente;
 	}
 
-	public void setEstadoConfirmacionUsuario(Boolean estadoConfirmacionCliente) {
+	public void setEstadoConfirmacionCliente(Boolean estadoConfirmacionCliente) {
 		this.estadoConfirmacionCliente = estadoConfirmacionCliente;
 	}
 

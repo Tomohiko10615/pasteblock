@@ -91,6 +91,7 @@ public class Usuario implements Serializable {
 	}
 
 	public void setNombre(String nombre) {
+		nombre = nombre.substring(0, 1).toUpperCase() + nombre.substring(1).toLowerCase();
 		this.nombre = nombre;
 	}
 
@@ -99,6 +100,7 @@ public class Usuario implements Serializable {
 	}
 
 	public void setApellido(String apellido) {
+		apellido = apellido.substring(0, 1).toUpperCase() + apellido.substring(1).toLowerCase();
 		this.apellido = apellido;
 	}
 
