@@ -20,4 +20,6 @@ public interface IContratoService {
 	public void delete(Long id);
 	
 	public List<Contrato> fetchByClienteId(Long clienteId, Boolean finalizado, Integer inicio, Integer total);
+	
+	public List<Contrato> fetchByBlockerId(Long blockerId, Boolean finalizado, Integer inicio, Integer total);
 }

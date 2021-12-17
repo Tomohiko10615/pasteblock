@@ -50,5 +50,9 @@ public class ContratoServiceImpl implements IContratoService {
 	public List<Contrato> fetchByClienteId(Long clienteId, Boolean finalizado, Integer inicio, Integer total) {
 		return contratoDao.fetchByClienteId(clienteId, finalizado, inicio, total);
 	}
+	
+	public List<Contrato> fetchByBlockerId(Long blockerId, Boolean finalizado, Integer inicio, Integer total) {
+		return contratoDao.fetchByBlockerId(blockerId, finalizado, inicio, total);
+	}
 
 }

@@ -47,8 +47,12 @@ public class MensajeServiceImpl implements IMensajeService {
 		return mensajeDao.findAll(pageable);
 	}
 	
-	public List<Mensaje> fecthByClienteId(Long clienteId, Integer inicio, Integer total) {
-		return mensajeDao.fecthByClienteId(clienteId, inicio, total);
+	public List<Mensaje> fetchByClienteId(Long clienteId, Integer inicio, Integer total) {
+		return mensajeDao.fetchByClienteId(clienteId, inicio, total);
+	}
+	
+	public List<Mensaje> fetchByBlockerId(Long blockerId, Integer inicio, Integer total) {
+		return mensajeDao.fetchByBlockerId(blockerId, inicio, total);
 	}
 
 }

@@ -40,6 +40,7 @@ public class Blocker implements Serializable {
 	public void prePersist() {
 		disponible = true;
 		numeroCalificaciones = 0;
+		numeroTrabajosCulminados = 0;
 	}
 	
 	@OneToMany(mappedBy="blocker", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

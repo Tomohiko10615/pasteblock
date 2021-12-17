@@ -19,5 +19,7 @@ public interface IMensajeService {
 	
 	public void delete(Long id);
 	
-	public List<Mensaje> fecthByClienteId(Long clienteId, Integer inicio, Integer total);
+	public List<Mensaje> fetchByClienteId(Long clienteId, Integer inicio, Integer total);
+	
+	public List<Mensaje> fetchByBlockerId(Long blockerId, Integer inicio, Integer total);
 }
