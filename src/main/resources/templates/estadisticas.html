@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/base :: head"></head>
+
+<body>
+
+	<header th:replace="layout/base :: header"></header>
+
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header fw-bold" th:text=${accion}></div>
+			<div class="card-body">
+				<div class="d-grid gap-2">
+					<div class="row mb-3">
+						<div class="col-sm-6">
+							<h6>Total de usuarios</h6>
+						</div>
+						<div class="col-sm-6 text-secondary" th:text="${totalUsuarios}">
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<div class="col-sm-6">
+							<h6>Total de clientes</h6>
+						</div>
+						<div class="col-sm-6 text-secondary" th:text="${totalClientes}">
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<div class="col-sm-6">
+							<h6>Total de blockers</h6>
+						</div>
+						<div class="col-sm-6 text-secondary" th:text="${totalBlockers}">
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<div class="col-sm-6">
+							<h6>Total de mensajes</h6>
+						</div>
+						<div class="col-sm-6 text-secondary" th:text="${totalMensajes}">
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<div class="col-sm-6">
+							<h6>Total de contratos</h6>
+						</div>
+						<div class="col-sm-6 text-secondary" th:text="${totalContratos}">
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<div class="col-sm-6">
+							<h6>Porcentaje de contratación</h6>
+						</div>
+						<div class="col-sm-6 text-secondary"
+							th:text="${totalContratos} / ${totalMensajes} * 100 + '%'">
+						</div>
+					</div>
+
+					<div th:each="servicio : ${blockersPorServiciosYDistrito}" class="row mb-3">
+						<div class="col-sm-2">
+							<h6 th:text="${servicio.key}">Número de servicios por distrito</h6>
+						</div>
+						<div class="row col-sm-10">
+							<div th:each="numero : ${servicio.value}" class="col-sm-4 mb-3"
+								>
+								
+									<span
+										th:if="${numero.value != 0}" th:text="${numero.key} + ' (' + ${numero.value} + ')'"
+										class="badge bg-primary rounded-pill w-100 p-2">
+									</span>
+									
+									<span
+										th:if="${numero.value == 0}" th:text="${numero.key} + ' (' + ${numero.value} + ')'"
+										class="badge bg-danger rounded-pill w-100 p-2">
+									</span>
+
+								
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/base :: footer"></footer>
+
+</body>
+</html>

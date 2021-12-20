@@ -23,6 +23,11 @@ public class JpaUserDetailsService implements UserDetailsService {
 	@Autowired
 	private IUsuarioDao usuarioDao;
 	
+	@Transactional(readOnly=true)
+	public Integer getTotalUsuarios() {
+		return usuarioDao.getTotalUsuarios();
+	}
+	
 	@Override
 	@Transactional(readOnly=true)
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

@@ -54,5 +54,9 @@ public class MensajeServiceImpl implements IMensajeService {
 	public List<Mensaje> fetchByBlockerId(Long blockerId, Integer inicio, Integer total) {
 		return mensajeDao.fetchByBlockerId(blockerId, inicio, total);
 	}
+	
+	public Integer getTotalMensajes() {
+		return mensajeDao.getTotalMensajes();
+	}
 
 }

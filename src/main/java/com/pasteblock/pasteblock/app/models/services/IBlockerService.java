@@ -21,4 +21,7 @@ public interface IBlockerService {
 	
 	public List<Blocker> fetchByIdWithServicioWithDistrito(Long servicioId, Long distritoId, String criterio, Integer orden, Integer inicio, Integer total);
 	
+	public Integer getTotalBlockers();
+	
+	public Integer getTotalBlockersByServicioAndDistrito(Long servicioId, Long distritoId);
 }

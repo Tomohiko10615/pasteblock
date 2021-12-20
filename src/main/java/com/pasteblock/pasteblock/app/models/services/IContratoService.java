@@ -22,4 +22,8 @@ public interface IContratoService {
 	public List<Contrato> fetchByClienteId(Long clienteId, Boolean finalizado, Integer inicio, Integer total);
 	
 	public List<Contrato> fetchByBlockerId(Long blockerId, Boolean finalizado, Integer inicio, Integer total);
+	
+	public Integer getNumeroServiciosByBlockerAndDistrito(Long blockerId, Long distritoId);
+	
+	public Integer getTotalContratos();
 }

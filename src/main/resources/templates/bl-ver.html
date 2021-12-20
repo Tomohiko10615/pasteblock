@@ -193,6 +193,22 @@
 								</div>
 							</div>
 						</div>
+						
+						<div class="row mb-3">
+							<div class="col-sm-2">
+								<h6>Número de servicios por distrito</h6>
+							</div>
+							<div class="row col-sm-10">
+								<div class="col-sm-4 mb-3"
+									th:each="numero : ${serviciosPorDistrito}"
+									th:if="${numero.getValue() > 0}">
+									<h6>
+										<span  class="badge bg-danger rounded-pill w-100 p-2"
+											th:text="${numero.getKey()} + ' (' + ${numero.getValue() + ')'}"></span>
+									</h6>
+								</div>
+							</div>
+						</div>
 
 						<td><a class="btn btn-outline-info btn-lg"
 								th:href="@{/blockers/form/} + ${blocker.id}">Editar perfil</a></td>

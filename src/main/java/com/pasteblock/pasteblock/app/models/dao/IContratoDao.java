@@ -13,4 +13,10 @@ public interface IContratoDao extends PagingAndSortingRepository<Contrato, Long>
 	
 	@Query(value="SELECT * FROM contratos WHERE blocker_id = ?1 AND (ha_finalizado = false OR ha_finalizado = ?2) ORDER BY id DESC LIMIT ?3, ?4", nativeQuery = true)
 	public List<Contrato> fetchByBlockerId(Long blockerId, Boolean finalizado, Integer inicio, Integer total);
+	
+	@Query(value="SELECT COUNT(*) FROM contratos WHERE blocker_id = ?1 AND distrito_id = ?2", nativeQuery = true)
+	public Integer getNumeroServiciosByBlockerAndDistrito(Long blockerId, Long distritoId);
+	
+	@Query(value="SELECT COUNT(*) FROM contratos", nativeQuery = true)
+	public Integer getTotalContratos();
 }

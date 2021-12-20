@@ -47,12 +47,24 @@ public class ContratoServiceImpl implements IContratoService {
 		return contratoDao.findAll(pageable);
 	}
 	
+	@Transactional(readOnly=true)
 	public List<Contrato> fetchByClienteId(Long clienteId, Boolean finalizado, Integer inicio, Integer total) {
 		return contratoDao.fetchByClienteId(clienteId, finalizado, inicio, total);
 	}
 	
+	@Transactional(readOnly=true)
 	public List<Contrato> fetchByBlockerId(Long blockerId, Boolean finalizado, Integer inicio, Integer total) {
 		return contratoDao.fetchByBlockerId(blockerId, finalizado, inicio, total);
+	}
+	
+	@Transactional(readOnly=true)
+	public Integer getNumeroServiciosByBlockerAndDistrito(Long blockerId, Long distritoId) {
+		return contratoDao.getNumeroServiciosByBlockerAndDistrito(blockerId, distritoId);
+	}
+	
+	@Transactional(readOnly=true)
+	public Integer getTotalContratos() {
+		return contratoDao.getTotalContratos();
 	}
 
 }

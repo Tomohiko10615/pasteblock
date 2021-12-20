@@ -13,4 +13,7 @@ public interface IMensajeDao extends PagingAndSortingRepository<Mensaje, Long> {
 	
 	@Query(value="SELECT * FROM mensajes WHERE blocker_id = ?1 ORDER BY id DESC LIMIT ?2, ?3", nativeQuery = true)
 	public List<Mensaje> fetchByBlockerId(Long clienteId, Integer inicio, Integer total);
+	
+	@Query(value="SELECT COUNT(*) FROM mensajes", nativeQuery = true)
+	public Integer getTotalMensajes();
 }

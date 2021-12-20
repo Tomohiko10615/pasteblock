@@ -45,6 +45,10 @@
 							class="nav-link"
 							th:class="${#httpServletRequest.requestURI == '/servicios/listar'? 'nav-link active': 'nav-link'}"
 							th:href="@{/servicios/listar}">Servicios</a></li>
+						<li class="nav-item"><a data-toggle="tab" role="tab"
+							class="nav-link"
+							th:class="${#httpServletRequest.requestURI == '/estadisticas'? 'nav-link active': 'nav-link'}"
+							th:href="@{/estadisticas}">Estadísticas</a></li>
 					</ul>
 				</div>
 			</div>

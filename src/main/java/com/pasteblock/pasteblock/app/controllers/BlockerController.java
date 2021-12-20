@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +29,7 @@ import com.pasteblock.pasteblock.app.models.entity.Distrito;
 import com.pasteblock.pasteblock.app.models.entity.Role;
 import com.pasteblock.pasteblock.app.models.entity.Servicio;
 import com.pasteblock.pasteblock.app.models.services.IBlockerService;
+import com.pasteblock.pasteblock.app.models.services.IContratoService;
 import com.pasteblock.pasteblock.app.models.services.IDistritoService;
 import com.pasteblock.pasteblock.app.models.services.IServicioService;
 import com.pasteblock.pasteblock.app.util.paginator.PageRender;
@@ -44,6 +46,9 @@ public class BlockerController {
 	
 	@Autowired
 	private IDistritoService distritoService;
+	
+	@Autowired
+	private IContratoService contratoService;
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -161,6 +166,15 @@ public class BlockerController {
 	public String ver(@PathVariable(value="id") Long id, Model model) {
 		Blocker blocker = blockerService.findOne(id);
 		List<Servicio> servicios = servicioService.findAll();
+		List<Distrito> distritos = distritoService.findAll();
+		
+		Map<String, Integer> serviciosPorDistrito = new HashMap<>();
+		
+		for (long distritoId = 1; distritoId <= distritos.size(); distritoId++) {
+			serviciosPorDistrito.put(distritos.get((int) (distritoId - 1)).getNombre(), contratoService.getNumeroServiciosByBlockerAndDistrito(id, distritoId));
+		}
+		
+		model.addAttribute("serviciosPorDistrito", serviciosPorDistrito);
 		model.addAttribute("servicios", servicios);
 		model.addAttribute("blocker", blocker);
 		model.addAttribute("accion", "Perfil del blocker");

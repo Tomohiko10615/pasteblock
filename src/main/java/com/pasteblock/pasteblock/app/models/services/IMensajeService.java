@@ -22,4 +22,6 @@ public interface IMensajeService {
 	public List<Mensaje> fetchByClienteId(Long clienteId, Integer inicio, Integer total);
 	
 	public List<Mensaje> fetchByBlockerId(Long blockerId, Integer inicio, Integer total);
+	
+	public Integer getTotalMensajes();
 }

@@ -22,4 +22,14 @@ public interface IBlockerDao extends PagingAndSortingRepository<Blocker, Long> {
             + "(CASE WHEN ?4 = 1 AND ?3 = 'reputacion' THEN reputacion END) DESC "
             + "LIMIT ?5, ?6", nativeQuery = true)
 	public List<Blocker> fetchByIdWithServicioWithDistrito(Long servicioId, Long distritoId, String criterio, Integer orden, Integer inicio, Integer total);
+	
+	@Query(value="SELECT COUNT(*) FROM blockers", nativeQuery = true)
+	public Integer getTotalBlockers();
+	
+	@Query(value="SELECT COUNT(*) FROM blockers_distritos INNER JOIN blockers_servicios "
+			+ "ON blockers_servicios.blockers_id=blockers_distritos.blockers_id "
+			+ "WHERE servicios_id = ?1 AND distritos_id = ?2", nativeQuery = true)
+	public Integer getTotalBlockersByServicioAndDistrito(Long servicioId, Long distritoId);
+	
+
 }
