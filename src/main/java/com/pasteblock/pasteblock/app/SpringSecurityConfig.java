@@ -21,13 +21,16 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
-		http.authorizeRequests().antMatchers("/api/**").permitAll()
+		http.authorizeRequests().antMatchers("/api/**", "/h2-console/**", "/h2/**").permitAll()
 		.antMatchers("/blockers/**").hasAnyAuthority("Admin")
 		.antMatchers("/clientes/**").hasAnyAuthority("Admin")
 		.antMatchers("/contratos/**").hasAnyAuthority("Admin")
 		.antMatchers("/mensajes/**").hasAnyAuthority("Admin")
 		.antMatchers("/").hasAnyAuthority("Admin")
 		.antMatchers("/home").hasAnyAuthority("Admin")
+		.and()
+        .csrf().ignoringAntMatchers("/h2-console/**", "/h2/**")
+		
 		.and()
 		    .formLogin()
 		    .loginPage("/login")
@@ -36,6 +39,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		.and()
 		.logout().permitAll();
 		//http.csrf().disable();
+		
+		http.headers().frameOptions().disable();
 	}
 
 	@Autowired
