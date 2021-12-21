@@ -33,5 +33,5 @@ build/
 .vscode/
 
 ### H2 DB Files ###
-/pasteblockdb.mv.db
-/pasteblockdb.trace.db
+pasteblockdb.mv.db
+pasteblockdb.trace.db
