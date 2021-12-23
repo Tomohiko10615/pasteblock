@@ -30,6 +30,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/home").hasAnyAuthority("Admin")
 		.and()
         .csrf().ignoringAntMatchers("/h2-console/**", "/h2/**")
+        
 		
 		.and()
 		    .formLogin()
@@ -37,7 +38,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		    .usernameParameter("email")
 		    .permitAll()
 		.and()
-		.logout().permitAll();
+		.logout().permitAll()
+		.and()
+        .csrf().disable();
 		//http.csrf().disable();
 		
 		http.headers().frameOptions().disable();

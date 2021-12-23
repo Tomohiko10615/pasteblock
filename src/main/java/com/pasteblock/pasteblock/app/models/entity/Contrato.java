@@ -10,18 +10,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+//import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+//import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "contratos")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Contrato implements Serializable {
 
 	@Id
@@ -42,6 +43,9 @@ public class Contrato implements Serializable {
 
 	@Column(name = "costo_final")
 	private Float costoFinal;
+	
+	@Column(name = "tiempo_estimado")
+	private Integer tiempoEstimado;
 
 	@Column(name = "calificacion_blocker")
 	private Integer calificacionBlocker;
@@ -79,6 +83,12 @@ public class Contrato implements Serializable {
 
 	@Column(name = "observaciones_blocker", columnDefinition = "VARCHAR(1000)")
 	private String observacionesBlocker;
+	
+	@PrePersist
+	public void prePersist() {
+		fechaInicio = new Date(System.currentTimeMillis());
+		fechaFinal = new Date(System.currentTimeMillis() + 1000*60*60*24*60);
+	}
 
 	private static final long serialVersionUID = 1L;
 
@@ -155,11 +165,16 @@ public class Contrato implements Serializable {
 	}
 
 	public Boolean getHaFinalizado() {
+		setHaFinalizado(this.haFinalizado);
 		return haFinalizado;
 	}
 
 	public void setHaFinalizado(Boolean haFinalizado) {
-		this.haFinalizado = haFinalizado;
+		Date now = new Date();
+		if (haFinalizado == null && now.after(this.fechaFinal)) {
+			this.haFinalizado = true;
+		} else
+			this.haFinalizado = haFinalizado;
 	}
 
 	public Date getFechaInicio() {
@@ -216,6 +231,14 @@ public class Contrato implements Serializable {
 
 	public void setDistrito(Distrito distrito) {
 		this.distrito = distrito;
+	}
+
+	public Integer getTiempoEstimado() {
+		return tiempoEstimado;
+	}
+
+	public void setTiempoEstimado(Integer tiempoEstimado) {
+		this.tiempoEstimado = tiempoEstimado;
 	}
 
 	public static long getSerialversionuid() {

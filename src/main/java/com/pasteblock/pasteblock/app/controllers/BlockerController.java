@@ -170,9 +170,8 @@ public class BlockerController {
 		
 		Map<String, Integer> serviciosPorDistrito = new HashMap<>();
 		
-		for (long distritoId = 1; distritoId <= distritos.size(); distritoId++) {
+		for (long distritoId = 1; distritoId <= distritos.size(); distritoId++)
 			serviciosPorDistrito.put(distritos.get((int) (distritoId - 1)).getNombre(), contratoService.getNumeroServiciosByBlockerAndDistrito(id, distritoId));
-		}
 		
 		model.addAttribute("serviciosPorDistrito", serviciosPorDistrito);
 		model.addAttribute("servicios", servicios);

@@ -16,12 +16,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+//import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+//import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "clientes")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Cliente implements Serializable {
 
 	@Id
@@ -48,6 +48,9 @@ public class Cliente implements Serializable {
 
 	@Column(name = "numero_servicios_contratados")
 	private Integer numeroServiciosContratados;
+	
+	@Column(name = "numero_calificaciones")
+	private Integer numeroCalificaciones;
 	
 	@PrePersist
 	public void prePersist() {
@@ -124,7 +127,12 @@ public class Cliente implements Serializable {
 		this.distritoId = distritoId;
 	}
 
-	
-	
+	public Integer getNumeroCalificaciones() {
+		return numeroCalificaciones;
+	}
+
+	public void setNumeroCalificaciones(Integer numeroCalificaciones) {
+		this.numeroCalificaciones = numeroCalificaciones;
+	}
 
 }
