@@ -6,3 +6,5 @@ Service providers can register, fill their profiles and get job opportunities, w
 It features a system where both sides can track their own historial activity inside the platform and rate themselves mutually for each concluded service.
 
 ## Schema
+
+![Pasteblock Schema](https://github.com/Tomohiko10615/pasteblock/raw/main/schema.png)
