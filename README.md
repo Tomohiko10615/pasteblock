@@ -31,3 +31,5 @@ The main Java app was hosted on Heroku, while the MySQL database was hosted in a
 
 ![Contracts](https://github.com/Tomohiko10615/pasteblock/raw/main/contract.png)
 
+## API endpoints
+
