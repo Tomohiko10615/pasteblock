@@ -25,7 +25,11 @@ The main Java app was hosted on Heroku, while the MySQL database was hosted in a
 
 ## Control Panel
 
+It was done with Thymeleaf and bootstrap. Only users with an admin role have enough permissions.
+
 ![Control Panel](https://github.com/Tomohiko10615/pasteblock/raw/main/control-panel.png)
+
+Admins are able to monitor the activy in the application an also have access to statistics.
 
 ![Logged-in](https://github.com/Tomohiko10615/pasteblock/raw/main/logged-in.png)
 
