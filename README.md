@@ -12,7 +12,7 @@ It features a system where both sides can track their own historial activity ins
 ## Stack
 
 This project was done using Spring Framework (Spring Boot, Spring Data JPA, Spring Security, Thymeleaf)
-The main Java app was hosted on Heroku, while the MySQL database was hosted in an AWS RDS instance and photos were uploaded to Amazon S3.
+The main Java app was hosted on Heroku, while the MySQL database was hosted in an Amazon RDS instance and photos were uploaded to Amazon S3.
 
 ![Spring](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
 ![Spring](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
@@ -27,4 +27,7 @@ The main Java app was hosted on Heroku, while the MySQL database was hosted in a
 
 ![Control Panel](https://github.com/Tomohiko10615/pasteblock/raw/main/control-panel.png)
 
+![Logged-in](https://github.com/Tomohiko10615/pasteblock/raw/main/logged-in.png)
+
+![Contracts](https://github.com/Tomohiko10615/pasteblock/raw/main/contract.png)
 
