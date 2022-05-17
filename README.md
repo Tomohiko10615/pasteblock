@@ -37,3 +37,24 @@ Admins are able to monitor the activy in the application an also have access to 
 
 ## API endpoints
 
+### **Save new customer**
+
+Type: **POST**
+``` 
+/login
+```
+
+**Request Body**
+
+`Required: application/json`
+
+{
+  email: *string*,
+  password: *string*
+}
+
+**Responses**:
+| Code | Description     |
+| :-------- | :------- |
+| `200` | `Returns application/json Login was successful` |
+| `401` | `Returns application/json Login was unsuccessful` |
