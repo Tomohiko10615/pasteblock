@@ -48,10 +48,20 @@ Type: **POST**
 
 `Required: application/json`
 
-{
-  email: *string*,
-  password: *string*
+##### Schema
+
+Login details {
+email*	string
+password*	string
 }
+
+##### Example value
+
+{
+&ensp;"email: "jtejada@gmail.com",
+&ensp;"password": "MyPassword01840"
+}
+
 
 **Responses**:
 | Code | Description     |
