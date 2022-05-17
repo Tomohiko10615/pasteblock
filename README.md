@@ -50,15 +50,15 @@ Type: **POST**
 
 ##### Schema
 
-Login details {
-email*	string
-password*	string
+Login details {\
+&nbsp;&nbsp;&nbsp;&nbsp;email*	*string\
+&nbsp;&nbsp;&nbsp;&nbsp;password*	*string\
 }
 
 ##### Example value
 
 {
-&nbsp;&nbsp;&nbsp;&nbsp;"email: "jtejada@gmail.com",
+&nbsp;&nbsp;&nbsp;&nbsp;"email: "jtejada@gmail.com",\
 &nbsp;&nbsp;&nbsp;&nbsp;"password": "MyPassword01840"
 }
 
