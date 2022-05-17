@@ -41,7 +41,7 @@ Admins are able to monitor the activy in the application an also have access to 
 
 Type: **POST**
 ``` 
-/login
+/api/login
 ```
 
 **Request Body**
@@ -110,5 +110,20 @@ If login was unsuccessful returns success = false:
     &nbsp;&nbsp;&nbsp;&nbsp;"success": false\
 }
 
+### **Update Push Notification Token**
 
+It updates the push notification token of a logged in user if the token of the device is different from the one stored in the database.
 
+Type: **POST**
+``` 
+/api/token
+```
+
+**Request Body**
+
+`Required: application/json`
+
+**Responses**:
+| Code | Description     |
+| :-------- | :------- |
+| `201` | `Returns true, indicating the token was successfully updated` |
