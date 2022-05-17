@@ -51,8 +51,8 @@ Type: **POST**
 ##### Schema
 
 Login details {\
-&nbsp;&nbsp;&nbsp;&nbsp;email\* *string\
-&nbsp;&nbsp;&nbsp;&nbsp;password\* *string\
+&nbsp;&nbsp;&nbsp;&nbsp;email\* **string\
+&nbsp;&nbsp;&nbsp;&nbsp;password\* **string\
 }
 
 ##### Example value
