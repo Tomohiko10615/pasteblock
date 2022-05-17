@@ -68,7 +68,7 @@ Type: **POST**
 | `200` | `Returns application/json` |
 | `401` | `Returns application/json` |
 
-If login was successful returns successful = true along user data (if role is client also returns client only data):
+If login was successful returns success = true along user data (if role is client also returns client only data):
 
 ##### Schema
 
@@ -76,27 +76,27 @@ If login was successful returns successful = true along user data (if role is cl
 &nbsp;&nbsp;&nbsp;&nbsp;successful\* boolean\
 &nbsp;&nbsp;&nbsp;&nbsp;email\* string\
 &nbsp;&nbsp;&nbsp;&nbsp;nombre\* string\
-&nbsp;&nbsp;&nbsp;&nbsp;clienteId\ int\
-&nbsp;&nbsp;&nbsp;&nbsp;distrito\ string\
-&nbsp;&nbsp;&nbsp;&nbsp;distritoId\ int\
-&nbsp;&nbsp;&nbsp;&nbsp;token\ string\
-&nbsp;&nbsp;&nbsp;&nbsp;JWTtoken\ string\
+&nbsp;&nbsp;&nbsp;&nbsp;clienteId int\
+&nbsp;&nbsp;&nbsp;&nbsp;distrito string\
+&nbsp;&nbsp;&nbsp;&nbsp;distritoId int\
+&nbsp;&nbsp;&nbsp;&nbsp;token string\
+&nbsp;&nbsp;&nbsp;&nbsp;JWTtoken string\
 }
 
 ##### Example value
 
-{
-    "JWTtoken": "eyJhbGciOiJIUzUxMiJ9.eyJhdXRob3JpdGllcyI6IltdIiwic3ViIjoianRlamFkYUBib2xzYWRlaWRlYXMuY29tIn0.BtPAFSLaRtqFlFEZwivJW8rbviK_jZ6hKObqfOqBu3hkWvyyL_7XvbvQsYEnmkhZCoNIYdHyrLfGwsXdmQTj6Q",
-    "distrito": "Villa el Salvador",
-    "distritoId": 42,
-    "clienteId": 3,
-    "success": true,
-    "nombre": "Justo",
-    "email": "jtejada@bolsadeideas.com",
-    "token": "ExponentPushToken[rgFB-WI1COY372osToGFPe]"
+{\
+    "JWTtoken": "eyJhbGciOiJIUzUxMiJ9.eyJhdXRob3JpdGllcyI6IltdIiwic3ViIjoianRlamFkYUBib2xzYWRlaWRlYXMuY29tIn0.BtPAFSLaRtqFlFEZwivJW8rbviK_jZ6hKObqfOqBu3hkWvyyL_7XvbvQsYEnmkhZCoNIYdHyrLfGwsXdmQTj6Q",\
+    "distrito": "Villa el Salvador",\
+    "distritoId": 42,\
+    "clienteId": 3,\
+    "success": true,\
+    "nombre": "Justo",\
+    "email": "jtejada@gmail.com",\
+    "token": "ExponentPushToken[rgFB-WI1COY372osToGFPe]"\
 }
 
-If login was unsuccessful returns successful = false:
+If login was unsuccessful returns success = false:
 
 ##### Schema
 
@@ -106,8 +106,8 @@ If login was unsuccessful returns successful = false:
 
 ##### Example value
 
-{
-    "success": false
+{\
+    "success": false\
 }
 
 
