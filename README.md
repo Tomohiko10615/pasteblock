@@ -86,14 +86,14 @@ If login was successful returns success = true along user data (if role is clien
 ##### Example value
 
 {\
-    "JWTtoken": "eyJhbGciOiJIUzUxMiJ9.eyJhdXRob3JpdGllcyI6IltdIiwic3ViIjoianRlamFkYUBib2xzYWRlaWRlYXMuY29tIn0.BtPAFSLaRtqFlFEZwivJW8rbviK_jZ6hKObqfOqBu3hkWvyyL_7XvbvQsYEnmkhZCoNIYdHyrLfGwsXdmQTj6Q",\
-    "distrito": "Villa el Salvador",\
-    "distritoId": 42,\
-    "clienteId": 3,\
-    "success": true,\
-    "nombre": "Justo",\
-    "email": "jtejada@gmail.com",\
-    "token": "ExponentPushToken[rgFB-WI1COY372osToGFPe]"\
+    &nbsp;&nbsp;&nbsp;&nbsp;"JWTtoken": "eyJhbGciOiJIUzUxMiJ9.eyJhdXR9mnJpdGllcyI6IltdIiwic3ViIjoianRlamFkYUBib2xzYWRlaWRlYXMuY29tIn0.BtPAFSLaRtqFlFEZwivJW8rbviK_jZ6hKObqfOqBu3hkWvyyL_7XvbvQsYEnmkhZCoNIYdHyrLfGwsXdmQTj6Q",\
+    &nbsp;&nbsp;&nbsp;&nbsp;"distrito": "Villa el Salvador",\
+    &nbsp;&nbsp;&nbsp;&nbsp;"distritoId": 42,\
+    &nbsp;&nbsp;&nbsp;&nbsp;"clienteId": 3,\
+    &nbsp;&nbsp;&nbsp;&nbsp;"success": true,\
+    &nbsp;&nbsp;&nbsp;&nbsp;"nombre": "Justo",\
+    &nbsp;&nbsp;&nbsp;&nbsp;"email": "jtejada@gmail.com",\
+    &nbsp;&nbsp;&nbsp;&nbsp;"token": "ExponentPushToken[rgFB-WIo5OY372osTohuPe]"\
 }
 
 If login was unsuccessful returns success = false:
@@ -107,7 +107,7 @@ If login was unsuccessful returns success = false:
 ##### Example value
 
 {\
-    "success": false\
+    &nbsp;&nbsp;&nbsp;&nbsp;"success": false\
 }
 
 
