@@ -50,12 +50,10 @@ Type: **POST**
 
 ##### Schema
 
-`
 {\
 &nbsp;&nbsp;&nbsp;&nbsp;email *string\
 &nbsp;&nbsp;&nbsp;&nbsp;password *string\
 }
-`
 
 ##### Example value
 
