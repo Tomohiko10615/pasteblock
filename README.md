@@ -58,8 +58,8 @@ password*	string
 ##### Example value
 
 {
-&ensp;"email: "jtejada@gmail.com",
-&ensp;"password": "MyPassword01840"
+emsp"email: "jtejada@gmail.com",
+emsp"password": "MyPassword01840"
 }
 
 
