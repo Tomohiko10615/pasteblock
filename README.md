@@ -37,6 +37,8 @@ Admins are able to monitor the activy in the application an also have access to 
 
 ## API endpoints
 
+This is not a comprehensive list. There are just some remarkable endpoints.
+
 ### **Login**
 
 Type: **POST**
@@ -151,3 +153,20 @@ Type: **GET**
 | Code | Description     |
 | :-------- | :------- |
 | `200` | `Returns a list a professionals` |
+
+### **Send push notifications**
+
+It sends push notifications to mobile devices whenever a client or a professional sends a message to each other. It also updates a message in the database.
+
+Type: **POST**
+``` 
+/api/enviar
+```
+**Request Body**
+
+`Required: application/json`
+
+**Responses**:
+| Code | Description     |
+| :-------- | :------- |
+| `201` | `Returns true indicating the message was updated` |
