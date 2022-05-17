@@ -57,11 +57,10 @@ Login details {\
 
 ##### Example value
 
-{
+{\
 &nbsp;&nbsp;&nbsp;&nbsp;"email: "jtejada@gmail.com",\
-&nbsp;&nbsp;&nbsp;&nbsp;"password": "MyPassword01840"
+&nbsp;&nbsp;&nbsp;&nbsp;"password": "MyPassword01840"\
 }
-
 
 **Responses**:
 | Code | Description     |
