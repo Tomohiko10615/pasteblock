@@ -127,3 +127,27 @@ Type: **POST**
 | Code | Description     |
 | :-------- | :------- |
 | `201` | `Returns true, indicating the token was successfully updated` |
+
+### **List constructor professionals**
+
+It lists all available constructor professionals for a determined service and district, and also sorts them by various criteria.
+
+Type: **GET**
+``` 
+/api/listar/{servicioId}/{distritoId}
+```
+
+**Parameters:**
+| Name | Description     |
+| :-------- | :------- |
+| `servicioId` **required** *path* | `Id of the service` |
+| `distritoId` **required** *path* | `Id of the district` |
+| `criterio` *query* | `Order criteria, default is reputacion. It can also be numero_trabajos_culminados or fecha_de_registro` |
+| `orden` **required** *query* | `Order of the list. 0 for ASC, and 1 for DESC` |
+| `inicio` **required** *query* | `Select which one would be the first result. Used to limit the number of results` |
+| `total` **required** *query* | `Select the total number of results` |
+
+**Responses**:
+| Code | Description     |
+| :-------- | :------- |
+| `200` | `Returns a list a professionals` |
