@@ -37,7 +37,7 @@ Admins are able to monitor the activy in the application an also have access to 
 
 ## API endpoints
 
-### **Save new customer**
+### **Login**
 
 Type: **POST**
 ``` 
@@ -50,10 +50,12 @@ Type: **POST**
 
 ##### Schema
 
+```
 {\
 &nbsp;&nbsp;&nbsp;&nbsp;email *string\
 &nbsp;&nbsp;&nbsp;&nbsp;password *string\
 }
+```
 
 ##### Example value
 
