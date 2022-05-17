@@ -50,7 +50,7 @@ Type: **POST**
 
 ##### Schema
 
-Login details {\
+{\
 &nbsp;&nbsp;&nbsp;&nbsp;email\* string\
 &nbsp;&nbsp;&nbsp;&nbsp;password\* string\
 }
@@ -65,6 +65,50 @@ Login details {\
 **Responses**:
 | Code | Description     |
 | :-------- | :------- |
-| `200` | `Returns application/json Login was successful` |
-| `401` | `Returns application/json Login was unsuccessful` |
+| `200` | `Returns application/json` |
+| `401` | `Returns application/json` |
+
+If login was successful returns successful = true along user data (if role is client also returns client only data):
+
+##### Schema
+
+{\
+&nbsp;&nbsp;&nbsp;&nbsp;successful\* boolean\
+&nbsp;&nbsp;&nbsp;&nbsp;email\* string\
+&nbsp;&nbsp;&nbsp;&nbsp;nombre\* string\
+&nbsp;&nbsp;&nbsp;&nbsp;clienteId\ int\
+&nbsp;&nbsp;&nbsp;&nbsp;distrito\ string\
+&nbsp;&nbsp;&nbsp;&nbsp;distritoId\ int\
+&nbsp;&nbsp;&nbsp;&nbsp;token\ string\
+&nbsp;&nbsp;&nbsp;&nbsp;JWTtoken\ string\
+}
+
+##### Example value
+
+{
+    "JWTtoken": "eyJhbGciOiJIUzUxMiJ9.eyJhdXRob3JpdGllcyI6IltdIiwic3ViIjoianRlamFkYUBib2xzYWRlaWRlYXMuY29tIn0.BtPAFSLaRtqFlFEZwivJW8rbviK_jZ6hKObqfOqBu3hkWvyyL_7XvbvQsYEnmkhZCoNIYdHyrLfGwsXdmQTj6Q",
+    "distrito": "Villa el Salvador",
+    "distritoId": 42,
+    "clienteId": 3,
+    "success": true,
+    "nombre": "Justo",
+    "email": "jtejada@bolsadeideas.com",
+    "token": "ExponentPushToken[rgFB-WI1COY372osToGFPe]"
+}
+
+If login was unsuccessful returns successful = false:
+
+##### Schema
+
+{\
+&nbsp;&nbsp;&nbsp;&nbsp;success\* boolean\
+}
+
+##### Example value
+
+{
+    "success": false
+}
+
+
 
