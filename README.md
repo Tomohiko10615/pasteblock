@@ -72,15 +72,15 @@ If login was successful returns success = true along user data (if role is clien
 
 ##### Schema
 
-{\
-&nbsp;&nbsp;&nbsp;&nbsp;successful *boolean\  
-&nbsp;&nbsp;&nbsp;&nbsp;email *string\
-&nbsp;&nbsp;&nbsp;&nbsp;nombre *string\
-&nbsp;&nbsp;&nbsp;&nbsp;clienteId *int\
-&nbsp;&nbsp;&nbsp;&nbsp;distrito *string\
-&nbsp;&nbsp;&nbsp;&nbsp;distritoId *int\
-&nbsp;&nbsp;&nbsp;&nbsp;token *string\
-&nbsp;&nbsp;&nbsp;&nbsp;JWTtoken *string\
+{  
+&nbsp;&nbsp;&nbsp;&nbsp;successful *boolean    
+&nbsp;&nbsp;&nbsp;&nbsp;email *string  
+&nbsp;&nbsp;&nbsp;&nbsp;nombre *string  
+&nbsp;&nbsp;&nbsp;&nbsp;clienteId *int  
+&nbsp;&nbsp;&nbsp;&nbsp;distrito *string  
+&nbsp;&nbsp;&nbsp;&nbsp;distritoId *int  
+&nbsp;&nbsp;&nbsp;&nbsp;token *string  
+&nbsp;&nbsp;&nbsp;&nbsp;JWTtoken *string  
 }
 
 ##### Example value
